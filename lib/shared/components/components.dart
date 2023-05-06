@@ -71,3 +71,24 @@ Widget defaultTextFormField({
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
       ),
     );
+
+void navigateTo(context, widget) => Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => widget,
+  ),
+);
+
+void navigateAndFinish(
+    context,
+    widget,
+    ) =>
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => widget,
+      ),
+          (route) {
+        return false;
+      },
+    );
