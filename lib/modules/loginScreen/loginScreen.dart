@@ -1,3 +1,4 @@
+import 'package:dbproject/Layout/parkinglayout.dart';
 import 'package:dbproject/modules/loginScreen/cubit/cubit.dart';
 import 'package:dbproject/modules/loginScreen/cubit/states.dart';
 import 'package:dbproject/modules/parkinglotScreen/lotScreen.dart';
@@ -9,6 +10,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -113,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if (formKey.currentState?.validate() ?? true) {
                                     print(emailController.text);
                                     print(passwordController.text);
-                                    navigateTo(context, parkingLot());
+                                    navigateTo(context, ParkingLayout());
                                   }
                                 },
                                 text: 'sign in'),
