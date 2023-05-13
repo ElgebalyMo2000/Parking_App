@@ -71,24 +71,57 @@ Widget defaultTextFormField({
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
       ),
     );
+// ignore: non_constant_identifier_names
+Widget uploadUrImage({
+  required double width,
+  required double height,
+  required Color,
+  required onTap,
+  required String text,
+  //IconData? icon,
+}) =>
+    GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.only(left: 10.0),
+        width: width,
+        height: height,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15.0)),
+        child: Row(
+          children: [
+            Icon(
+              Icons.camera_alt_outlined,
+              color: Colors.grey,
+            ),
+            SizedBox(
+              width: 8.0,
+            ),
+            Text(
+              text,
+              style: TextStyle(color: Colors.grey),
+            )
+          ],
+        ),
+      ),
+    );
 
 void navigateTo(context, widget) => Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => widget,
-  ),
-);
+      context,
+      MaterialPageRoute(
+        builder: (context) => widget,
+      ),
+    );
 
 void navigateAndFinish(
-    context,
-    widget,
-    ) =>
+  context,
+  widget,
+) =>
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
         builder: (context) => widget,
       ),
-          (route) {
+      (route) {
         return false;
       },
     );

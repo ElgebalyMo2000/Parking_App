@@ -1,7 +1,9 @@
+import 'package:dbproject/shared/UploadPicture/UploadPicture.dart';
 import 'package:dbproject/shared/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../loginScreen/loginScreen.dart';
 
@@ -17,6 +19,7 @@ class _signupScreenState extends State<signupScreen> {
   var passwordController = TextEditingController();
   var nameController = TextEditingController();
   var phoneController = TextEditingController();
+  var vnumberController = TextEditingController();
   bool _isVisible = false;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -131,6 +134,24 @@ class _signupScreenState extends State<signupScreen> {
                           },
                           label: 'Phone Number',
                           prefix: Icons.numbers),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      defaultTextFormField(
+                          Type: TextInputType.number,
+                          controller: vnumberController,
+                          validate: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please Enter your Vehicle Number';
+                            }
+                            return null;
+                          },
+                          label: 'Vehicle Number',
+                          prefix: Icons.directions_car_filled),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      const UploadPicture(),
                       const SizedBox(
                         height: 10.0,
                       ),
