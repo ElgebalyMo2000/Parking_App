@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 Widget defaultButton({
   double width = 337.0,
   double height: 50,
+  Color textColor = Colors.black ,
   Color background = Colors.white,
   required Function function,
   required String text,
@@ -22,7 +23,7 @@ Widget defaultButton({
         child: Center(
             child: Text(
           text.toUpperCase(),
-          style: TextStyle(fontFamily: 'ZenDots', fontSize: 16.0),
+          style: TextStyle(fontFamily: 'ZenDots', fontSize: 16.0,color: textColor),
         )),
       ),
     );
@@ -32,16 +33,18 @@ Widget defaultTextFormField({
   Function(String)? onSubmit,
   Function(String)? onChange,
   VoidCallback? onTap,
-  required String? Function(String?) validate,
+   String? Function(String?)? validate,
   required String label,
-  required IconData prefix,
+   IconData? prefix,
   IconData? suffix,
   bool isPassword = false,
   VoidCallback? suffixPressed,
   required TextInputType Type,
+  Color? backgroundColor = Colors.white,
   //bool isClickable = true,
 }) =>
     TextFormField(
+      
       controller: controller,
       keyboardType: Type,
       onChanged: onChange,
@@ -51,7 +54,8 @@ Widget defaultTextFormField({
       obscureText: isPassword,
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.white,
+        fillColor: backgroundColor,
+        
         hintText: label,
         prefixIcon: Icon(
           prefix,
@@ -68,8 +72,23 @@ Widget defaultTextFormField({
                 ),
               )
             : null,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
+        borderSide: BorderSide(
+          color: Colors.red,
+          width: 0,
+          style: BorderStyle.none,
+        )
+            ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0),
+        borderSide: BorderSide(
+          color: Colors.red,
+          width: 0,
+          style: BorderStyle.none,
+        )
+        ),
       ),
+      
     );
 // ignore: non_constant_identifier_names
 Widget uploadUrImage({
