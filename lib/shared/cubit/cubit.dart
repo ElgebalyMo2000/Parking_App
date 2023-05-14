@@ -6,6 +6,8 @@ import 'package:dbproject/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../modules/profile/profileScreen.dart';
+
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
 
@@ -16,6 +18,7 @@ class AppCubit extends Cubit<AppStates> {
   List<Widget> screens = [
     ParkingLot(),
     BookingScreen(),
+    ProfileScreen(),
   ];
 
   List<String> titles = [
