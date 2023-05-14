@@ -41,6 +41,8 @@ dependencies:
   dio_helper_flutter: ^1.0.13
   getwidget: ^3.1.1
   image_picker: ^0.8.7+5 
+  countdown_progress_indicator: ^0.1.2
+ 
 
 dev_dependencies:
   flutter_test:

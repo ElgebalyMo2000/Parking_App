@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'modules/timer_scren.dart';
+
 void main() {
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
 
-              home: splashScreen(),
+              home: TimerScreen(),
             );
           },
         ),
