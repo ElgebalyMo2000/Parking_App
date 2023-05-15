@@ -34,10 +34,12 @@ Widget defaultTextFormField({
   Function(String)? onChange,
   VoidCallback? onTap,
    String? Function(String?)? validate,
-  required String label,
+   String? label,
+  String? labelText,
    IconData? prefix,
   IconData? suffix,
   bool isPassword = false,
+  bool enable = true,
   VoidCallback? suffixPressed,
   required TextInputType Type,
   Color? backgroundColor = Colors.white,
@@ -47,6 +49,7 @@ Widget defaultTextFormField({
       
       controller: controller,
       keyboardType: Type,
+      enabled:enable ,
       onChanged: onChange,
       onFieldSubmitted: onSubmit,
       validator: validate,
@@ -57,6 +60,7 @@ Widget defaultTextFormField({
         fillColor: backgroundColor,
         
         hintText: label,
+        labelText:labelText ,
         prefixIcon: Icon(
           prefix,
           color: Colors.grey,
