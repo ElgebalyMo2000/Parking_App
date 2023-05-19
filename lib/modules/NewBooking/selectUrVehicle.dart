@@ -7,7 +7,7 @@ class selectVehicle extends StatelessWidget {
   const selectVehicle({super.key});
 
   @override
-  Widget(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(

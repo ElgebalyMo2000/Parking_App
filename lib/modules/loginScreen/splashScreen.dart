@@ -26,6 +26,6 @@ class splashScreen extends StatelessWidget {
         splashIconSize: 250.0,
         splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.bottomToTop,
-        nextScreen: bookParking());
+        nextScreen: LoginScreen());
   }
 }

@@ -13,12 +13,12 @@ import 'modules/details/payment_method_screen.dart';
 import 'modules/timer_scren.dart';
 import 'shared/cache_helper.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -52,7 +52,6 @@ class MyApp extends StatelessWidget {
                   statusBarIconBrightness: Brightness.dark,
                 ),
               ),
-<<<<<<< HEAD
               bottomNavigationBarTheme: BottomNavigationBarThemeData(
                 backgroundColor: Colors.grey.withOpacity(.3),
                 elevation: 0.0,
@@ -63,13 +62,6 @@ class MyApp extends StatelessWidget {
           );
         },
       ),
-=======
-
-              home:splashScreen(),
-            );
-          },
-        ),
->>>>>>> fc614053b0291d8a89c4f5cf10d25bdbf480fdf9
     );
   }
 }
