@@ -43,6 +43,7 @@ dependencies:
   image_picker: ^0.8.7+5 
   shared_preferences: ^2.0.8
   syncfusion_flutter_datepicker: ^21.2.4
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
