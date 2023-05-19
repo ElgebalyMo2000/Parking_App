@@ -7,7 +7,7 @@ class DioHelper{
   {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://student.valuxapps.com/api/',
+        baseUrl: 'https://488e-45-242-171-229.ngrok-free.app/',
         receiveDataWhenStatusError: true ,
 
       ),
@@ -29,16 +29,16 @@ class DioHelper{
     required String url,
     required Map<String, dynamic> data,
     Map<String, dynamic>? query,
-    String lang = 'ar',
-    String? token,
+    // String lang = 'en',
+    // String? token,
   }) async
   {
-    dio!.options.headers =
-    {
-      'lang':lang,
-      'Authorization': token??'',
-      'Content-Type': 'application/json',
-    };
+    // dio!.options.headers =
+    // {
+    //   'lang':lang,
+    //   'Authorization': token??'',
+    //   'Content-Type': 'application/json',
+    // };
 
     return await dio!.post(
       url,

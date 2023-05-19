@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:getwidget/getwidget.dart';
 
-import '../../shared/components/components.dart';
+
 
 class ParkingLot extends StatelessWidget {
   const ParkingLot({Key? key}) : super(key: key);

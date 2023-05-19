@@ -1,3 +1,5 @@
+import '../../../models/login_model.dart';
+
 abstract class AppLoginStates {}
 
 class AppLoginInitialState extends AppLoginStates{}
@@ -5,9 +7,8 @@ class AppLoginInitialState extends AppLoginStates{}
 class AppLoginLoadingState extends AppLoginStates{}
 
 class AppLoginSuccessState extends AppLoginStates{
-  //final String? uId;
-  //AppLoginSuccessState(this.uId);
-
+   String? token;
+   AppLoginSuccessState(this.token);
 }
 
 class AppLoginErrorState extends AppLoginStates

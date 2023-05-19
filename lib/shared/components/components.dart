@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
 
 Widget defaultButton({
   double width = 337.0,
@@ -40,6 +39,7 @@ Widget defaultTextFormField({
   IconData? prefix,
   IconData? suffix,
   bool isPassword = false,
+  bool enable = true,
   VoidCallback? suffixPressed,
   required TextInputType Type,
   Color? backgroundColor = Colors.white,
@@ -48,6 +48,7 @@ Widget defaultTextFormField({
     TextFormField(
       controller: controller,
       keyboardType: Type,
+      enabled: enable,
       onChanged: onChange,
       onFieldSubmitted: onSubmit,
       validator: validate,
@@ -57,6 +58,7 @@ Widget defaultTextFormField({
         filled: true,
         fillColor: backgroundColor,
         hintText: label,
+        labelText: labelText,
         prefixIcon: Icon(
           prefix,
           color: Colors.grey,
@@ -172,3 +174,59 @@ void navigateAndFinish(
         return false;
       },
     );
+
+void showToast({
+  required String text,
+  required ToastStates state,
+}) =>
+    Fluttertoast.showToast(
+      msg: text,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 5,
+      backgroundColor: chooseToastColor(state),
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+
+// enum
+// ignore: constant_identifier_names
+enum ToastStates { SUCCESS, ERROR, WARNING }
+
+Color chooseToastColor(ToastStates state) {
+  Color color;
+
+  switch (state) {
+    case ToastStates.SUCCESS:
+      color = Colors.green;
+      break;
+    case ToastStates.ERROR:
+      color = Colors.red;
+      break;
+    case ToastStates.WARNING:
+      color = Colors.amber;
+      break;
+  }
+
+  return color;
+}
+
+void signOut(context) {
+  CacheHelper.removeData(
+    key: 'token',
+  ).then((value) {
+    if (value) {
+      navigateAndFinish(
+        context,
+        LoginScreen(),
+      );
+    }
+  });
+}
+
+bool isEmailValid(String email) {
+  final pattern =
+      r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$';
+  final regExp = RegExp(pattern);
+  return regExp.hasMatch(email);
+}

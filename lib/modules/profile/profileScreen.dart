@@ -96,11 +96,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                  backgroundColor: Colors.grey.withOpacity(.1),
                 Type: TextInputType.name),
                 SizedBox(height: 30,),
-            defaultButton(function: () {},
+            defaultButton(function: () {
+            },
              text: 'Edit Profile',
              background: Colors.black,
              textColor: Colors.white),
-             SizedBox(height: 40,),
+             SizedBox(height: 20,),
+            defaultButton(function: () {
+              signOut(context);
+            },
+                text: 'Sign Out',
+                background: Colors.black,
+                textColor: Colors.white),
           ],
         ),
       ),
