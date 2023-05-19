@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';
 
 Widget defaultButton({
   double width = 337.0,
   double height: 50,
-  Color textColor = Colors.black ,
+  Color textColor = Colors.black,
   Color background = Colors.white,
   required Function function,
   required String text,
@@ -23,7 +24,8 @@ Widget defaultButton({
         child: Center(
             child: Text(
           text.toUpperCase(),
-          style: TextStyle(fontFamily: 'ZenDots', fontSize: 16.0,color: textColor),
+          style: TextStyle(
+              fontFamily: 'ZenDots', fontSize: 16.0, color: textColor),
         )),
       ),
     );
@@ -33,9 +35,9 @@ Widget defaultTextFormField({
   Function(String)? onSubmit,
   Function(String)? onChange,
   VoidCallback? onTap,
-   String? Function(String?)? validate,
+  String? Function(String?)? validate,
   required String label,
-   IconData? prefix,
+  IconData? prefix,
   IconData? suffix,
   bool isPassword = false,
   VoidCallback? suffixPressed,
@@ -44,7 +46,6 @@ Widget defaultTextFormField({
   //bool isClickable = true,
 }) =>
     TextFormField(
-      
       controller: controller,
       keyboardType: Type,
       onChanged: onChange,
@@ -55,7 +56,6 @@ Widget defaultTextFormField({
       decoration: InputDecoration(
         filled: true,
         fillColor: backgroundColor,
-        
         hintText: label,
         prefixIcon: Icon(
           prefix,
@@ -72,23 +72,21 @@ Widget defaultTextFormField({
                 ),
               )
             : null,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.0),
-        borderSide: BorderSide(
-          color: Colors.red,
-          width: 0,
-          style: BorderStyle.none,
-        )
-            ),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0),
-        borderSide: BorderSide(
-          color: Colors.red,
-          width: 0,
-          style: BorderStyle.none,
-        )
-        ),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.0),
+            borderSide: BorderSide(
+              color: Colors.red,
+              width: 0,
+              style: BorderStyle.none,
+            )),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.0),
+            borderSide: BorderSide(
+              color: Colors.red,
+              width: 0,
+              style: BorderStyle.none,
+            )),
       ),
-      
     );
 // ignore: non_constant_identifier_names
 Widget uploadUrImage({
@@ -112,7 +110,7 @@ Widget uploadUrImage({
               Icons.camera_alt_outlined,
               color: Colors.grey,
             ),
-            SizedBox(
+            const SizedBox(
               width: 8.0,
             ),
             Text(
@@ -121,6 +119,36 @@ Widget uploadUrImage({
             )
           ],
         ),
+      ),
+    );
+
+Widget vButton({
+  required onPressed,
+  required text,
+  required image,
+}) =>
+    MaterialButton(
+      onPressed: onPressed,
+      child: Padding(
+        padding: const EdgeInsetsDirectional.only(start: 5.0),
+        child: Row(children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.only(top: 5.0, bottom: 5.0),
+            child: GFAvatar(
+              backgroundImage: image,
+              shape: GFAvatarShape.standard,
+              size: 50.0,
+            ),
+          ),
+          const SizedBox(width: 15.0),
+          Text(
+            text,
+            style: const TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ]),
       ),
     );
 
