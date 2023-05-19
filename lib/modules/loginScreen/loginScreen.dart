@@ -1,13 +1,17 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:dbproject/Layout/parkinglayout.dart';
 import 'package:dbproject/modules/loginScreen/cubit/cubit.dart';
 import 'package:dbproject/modules/loginScreen/cubit/states.dart';
-import 'package:dbproject/modules/parkinglotScreen/lotScreen.dart';
+
 import 'package:dbproject/modules/signup/signUp.dart';
 import 'package:dbproject/shared/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import '../../shared/cache_helper.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -38,7 +42,27 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocProvider(
       create: (BuildContext context) => AppLoginCubit(),
       child: BlocConsumer<AppLoginCubit,AppLoginStates>(
-        listener: (context, state){},
+        listener: (context, state){
+      if(state is AppLoginSuccessState) {
+        print(state.token);
+        CacheHelper.saveData(key: 'token', value:state.token).then((
+            value) {
+          navigateAndFinish(context, ParkingLayout());
+        });
+        }
+      if(state is AppLoginErrorState){
+         Fluttertoast.showToast(
+            msg:'Authentication failed. Please ensure you have entered the correct login information.' ,
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 5,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+      }
+
+      },
         builder: (context, state)
         {
           return Scaffold(
@@ -79,6 +103,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 validate: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'please enter your email address';
+                                  }else if(!isEmailValid(value)){
+                                    return'Incorrect email format';
                                   }
                                   return null;
                                 },
@@ -111,15 +137,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             SizedBox(
                               height: 30.0,
                             ),
-                            defaultButton(
-                                function: () {
-                                  if (formKey.currentState?.validate() ?? true) {
-                                    print(emailController.text);
-                                    print(passwordController.text);
-                                    navigateTo(context, ParkingLayout());
-                                  }
-                                },
-                                text: 'sign in'),
+                            ConditionalBuilder(
+                              condition: state is! AppLoginLoadingState,
+                              builder: (context) =>  defaultButton(
+                                  function: () {
+                                    if (formKey.currentState?.validate() ?? true) {
+                                      AppLoginCubit.get(context).userLogin(
+                                        email: emailController.text,
+                                        password: passwordController.text,
+                                      );
+                                    }
+                                  },
+                                  text: 'sign in'), fallback: (BuildContext context) => Center(child: CircularProgressIndicator()),
+                            ),
                             SizedBox(
                               height: 5.0,
                             ),

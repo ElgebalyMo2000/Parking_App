@@ -11,11 +11,14 @@ import 'modules/details/parking_ticket_screen.dart';
 import 'modules/details/paying_confirmation_screen.dart';
 import 'modules/details/payment_method_screen.dart';
 import 'modules/timer_scren.dart';
+import 'shared/cache_helper.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
-  runApp(const MyApp());
+  await CacheHelper.init();
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
