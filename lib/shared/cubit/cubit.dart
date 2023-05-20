@@ -3,10 +3,7 @@
 import 'dart:html';
 
 import 'package:dbproject/modules/booking/booking.dart';
-import 'package:dbproject/modules/managerLot/Reservations.dart';
-import 'package:dbproject/modules/managerLot/Reservations.dart';
-import 'package:dbproject/modules/managerLot/Reservations.dart';
-import 'package:dbproject/modules/managerLot/Reservations.dart';
+
 import 'package:dbproject/modules/parkinglotScreen/lotScreen.dart';
 
 import 'package:dbproject/shared/components/components.dart';
@@ -18,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../modules/managerLot/Activation.dart';
 import '../../modules/managerLot/Cancellation.dart';
 import '../../modules/managerLot/Pending.dart';
+
 import '../../modules/managerLot/Reservations.dart';
 import '../../modules/managerLot/expired.dart';
 import '../../modules/profile/profileScreen.dart';
@@ -26,8 +24,9 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
-
+  int managerIndex = 0;
   int currentIndex = 0;
+  int len = 0;
 
   List<Widget> screens = [
     ParkingLot(),
@@ -65,12 +64,12 @@ class AppCubit extends Cubit<AppStates> {
     const ExpiredReservation(),
   ];
   void onChangeBottomNavBarManager(int indexManger) {
-    currentIndex = indexManger;
+    managerIndex = indexManger;
     emit(ManagerChangeBottomNavBarState());
   }
 
   List<dynamic> Reservations = [];
   void getReservation() {
-    emit(ManagerLoadingState());
+    emit(AppLoadingBookingDataState());
   }
 }
