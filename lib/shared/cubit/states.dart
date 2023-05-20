@@ -9,3 +9,5 @@ class AppLoadingBookingDataState extends AppStates {}
 class AppErrorBookingDataState extends AppStates {}
 
 class AppSuccessBookingDataState extends AppStates {}
+
+class ManagerChangeBottomNavBarState extends AppStates {}
