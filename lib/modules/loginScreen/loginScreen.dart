@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       if(state is AppLoginErrorState){
          Fluttertoast.showToast(
-            msg:'Authentication failed. Please ensure you have entered the correct login information.' ,
+            msg:'Please ensure you have entered the correct login information.' ,
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 5,
