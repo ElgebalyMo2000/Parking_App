@@ -14,7 +14,7 @@ class Reservations extends StatelessWidget {
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, Object? state) {
         return ConditionalBuilder(
-            condition: state is! ManagerLoadingState,
+            condition: state is! AppLoadingBookingDataState,
             builder: (context) => ListView.separated(
                   itemBuilder: (context, index) => BuildReservationItem(),
                   separatorBuilder: (context, index) => dividerItem(),
