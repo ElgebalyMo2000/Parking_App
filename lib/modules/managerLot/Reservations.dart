@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared/components/components.dart';
 import '../../shared/cubit/states.dart';
 
-class Reservations extends StatelessWidget {
-  const Reservations({super.key});
+class ReservationScreen extends StatelessWidget {
+  const ReservationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

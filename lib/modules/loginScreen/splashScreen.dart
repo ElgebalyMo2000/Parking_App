@@ -2,6 +2,7 @@
 
 import 'package:dbproject/modules/NewBooking/selectUrVehicle.dart';
 import 'package:dbproject/modules/loginScreen/loginScreen.dart';
+import 'package:dbproject/modules/managerLot/manager_home_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -26,6 +27,6 @@ class splashScreen extends StatelessWidget {
         splashIconSize: 250.0,
         splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.bottomToTop,
-        nextScreen: LoginScreen());
+        nextScreen: ManagerHomeLayout());
   }
 }
