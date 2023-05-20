@@ -29,3 +29,23 @@ class UserData
     detail = json['detail'];
   }
 }
+
+class BookingDataModel {
+  int? duration;
+  int? customerId;
+  int? id;
+  String? startTime;
+  String? state;
+  double? totalPay;
+  int? slotId;
+
+  BookingDataModel.fromJson(Map<String, dynamic> json){
+    duration = json['duration'];
+    customerId = json['customer_id'];
+    id = json['id'];
+    startTime = json['start_time'];
+    state = json['state'];
+    totalPay = json['total_pay'];
+    slotId = json['slot_id'];
+  }
+}
