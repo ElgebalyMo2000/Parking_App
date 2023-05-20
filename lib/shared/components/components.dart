@@ -1,5 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:getwidget/components/avatar/gf_avatar.dart';
+import 'package:getwidget/shape/gf_avatar_shape.dart';
+
+import '../../modules/loginScreen/loginScreen.dart';
+import '../cache_helper.dart';
 
 Widget defaultButton({
   double width = 337.0,
@@ -35,7 +41,8 @@ Widget defaultTextFormField({
   Function(String)? onChange,
   VoidCallback? onTap,
   String? Function(String?)? validate,
-  required String label,
+  String? label,
+  String? labelText,
   IconData? prefix,
   IconData? suffix,
   bool isPassword = false,
