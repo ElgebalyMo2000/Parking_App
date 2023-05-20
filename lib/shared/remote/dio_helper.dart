@@ -5,7 +5,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://cf26-45-242-15-102.ngrok-free.app/',
+        baseUrl: 'https://488e-45-242-171-229.ngrok-free.app/',
         receiveDataWhenStatusError: true,
       ),
     );
@@ -13,15 +13,10 @@ class DioHelper {
 
   static Future<Response> getData({
     required String url,
-    Map<String, dynamic>? query,
-    String? token,
+    required Map<String, dynamic> query,
   }) async {
-    dio!.options.headers = {
-      'Authorization': token ?? '',
-    };
     return await dio!.get(
       url,
-      queryParameters: query,
     );
   }
 
@@ -29,11 +24,15 @@ class DioHelper {
     required String url,
     required Map<String, dynamic> data,
     Map<String, dynamic>? query,
-    String? token,
+    // String lang = 'en',
+    // String? token,
   }) async {
-    dio!.options.headers = {
-      'Authorization': token ?? '',
-    };
+    // dio!.options.headers =
+    // {
+    //   'lang':lang,
+    //   'Authorization': token??'',
+    //   'Content-Type': 'application/json',
+    // };
 
     return await dio!.post(
       url,

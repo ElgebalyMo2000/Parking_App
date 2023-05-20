@@ -6,6 +6,10 @@ import 'package:getwidget/components/avatar/gf_avatar.dart';
 import 'package:getwidget/shape/gf_avatar_shape.dart';
 
 import '../../modules/loginScreen/loginScreen.dart';
+<<<<<<< HEAD
+=======
+import '../cache_helper.dart';
+>>>>>>> main
 
 Widget defaultButton({
   double width = 337.0,
@@ -42,6 +46,10 @@ Widget defaultTextFormField({
   VoidCallback? onTap,
   String? Function(String?)? validate,
   String? label,
+<<<<<<< HEAD
+=======
+  String? labelText,
+>>>>>>> main
   IconData? prefix,
   IconData? suffix,
   bool isPassword = false,

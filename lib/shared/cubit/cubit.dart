@@ -68,6 +68,6 @@ class AppCubit extends Cubit<AppStates> {
   List<dynamic> Reservations = [];
   void getReservation() {
     emit(ManagerLoadingState());
-    DioHelper.getData(Url:baseUrl )
+    DioHelper.getData(Url: baseUrl);
   }
 }
