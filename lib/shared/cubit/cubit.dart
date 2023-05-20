@@ -20,6 +20,8 @@ import '../../modules/managerLot/Pending.dart';
 
 import '../../modules/managerLot/Reservations.dart';
 import '../../modules/managerLot/Reservations.dart';
+import '../../modules/managerLot/Reservations.dart';
+import '../../modules/managerLot/Reservations.dart';
 import '../../modules/managerLot/expired.dart';
 import '../../modules/profile/profileScreen.dart';
 

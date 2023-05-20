@@ -1,6 +1,5 @@
 import 'package:dbproject/modules/loginScreen/splashScreen.dart';
 import 'package:dbproject/shared/bloc_observer.dart';
-import 'package:dbproject/shared/components/constants.dart';
 import 'package:dbproject/shared/cubit/cubit.dart';
 import 'package:dbproject/shared/cubit/states.dart';
 import 'package:dbproject/shared/remote/dio_helper.dart';
@@ -16,14 +15,9 @@ import 'shared/cache_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
-
-  token = CacheHelper.getData(key: 'token');
-
-
   runApp(MyApp());
 }
 
@@ -34,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => AppCubit()..getBookingData(),
+      create: (BuildContext context) => AppCubit(),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -64,7 +58,7 @@ class MyApp extends StatelessWidget {
                 selectedItemColor: Colors.black,
               ),
             ),
-            home: splashScreen(),
+            home: const splashScreen(),
           );
         },
       ),

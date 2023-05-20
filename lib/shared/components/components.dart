@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:dbproject/shared/cache_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,10 +8,6 @@ import 'package:getwidget/components/avatar/gf_avatar.dart';
 import 'package:getwidget/shape/gf_avatar_shape.dart';
 
 import '../../modules/loginScreen/loginScreen.dart';
-<<<<<<< HEAD
-=======
-import '../cache_helper.dart';
->>>>>>> main
 
 Widget defaultButton({
   double width = 337.0,
@@ -46,10 +44,6 @@ Widget defaultTextFormField({
   VoidCallback? onTap,
   String? Function(String?)? validate,
   String? label,
-<<<<<<< HEAD
-=======
-  String? labelText,
->>>>>>> main
   IconData? prefix,
   IconData? suffix,
   bool isPassword = false,
@@ -246,4 +240,44 @@ bool isEmailValid(String email) {
   return regExp.hasMatch(email);
 }
 
-Widget BuildReservationIten() => Padding(padding: padding);
+Widget BuildReservationItem() => Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: Colors.grey.withOpacity(.1),
+          ),
+          child: MaterialButton(
+            onPressed: () {},
+            child: const Column(
+              children: [
+                Text(
+                  'data',
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 50.0,
+                ),
+                Row(
+                  children: [
+                    Text('data'),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Text('data'),
+                  ],
+                )
+              ],
+            ),
+          )),
+    );
+Widget dividerItem() => Padding(
+      padding: const EdgeInsetsDirectional.only(
+        start: 20.0,
+      ),
+      child: Container(
+        width: double.infinity,
+        height: 1.0,
+        color: Colors.grey[300],
+      ),
+    );
