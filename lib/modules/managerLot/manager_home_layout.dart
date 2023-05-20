@@ -16,12 +16,12 @@ class ManagerHomeLayout extends StatelessWidget {
         builder: (context, state) {
           var cubit = AppCubit.get(context);
           return Scaffold(
-            body: cubit.screens[cubit.currentIndex],
+            body: cubit.managerScreens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               items: cubit.bottomManagerItems,
               currentIndex: cubit.currentIndex,
-              onTap: (indexManager) {
-                cubit.onChangeBottomNavBarManager(indexManager);
+              onTap: (indexManger) {
+                cubit.onChangeBottomNavBarManager(indexManger);
               },
             ),
           );

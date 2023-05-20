@@ -18,7 +18,7 @@ class Reservations extends StatelessWidget {
             builder: (context) => ListView.separated(
                   itemBuilder: (context, index) => BuildReservationItem(),
                   separatorBuilder: (context, index) => dividerItem(),
-                  itemCount: 10,
+                  itemCount: 15,
                   physics: const BouncingScrollPhysics(),
                 ),
             fallback: (context) =>
