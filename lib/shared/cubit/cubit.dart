@@ -1,8 +1,9 @@
-// ignore_for_file: non_constant_identifier_names, unused_import
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:html';
 
 import 'package:dbproject/modules/booking/booking.dart';
+import 'package:dbproject/modules/managerLot/Reservations.dart';
 import 'package:dbproject/modules/managerLot/Reservations.dart';
 import 'package:dbproject/modules/managerLot/Reservations.dart';
 import 'package:dbproject/modules/managerLot/Reservations.dart';
@@ -17,8 +18,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../modules/managerLot/Activation.dart';
 import '../../modules/managerLot/Cancellation.dart';
 import '../../modules/managerLot/Pending.dart';
-
-import '../../modules/managerLot/Reservations.dart';
 import '../../modules/managerLot/Reservations.dart';
 import '../../modules/managerLot/expired.dart';
 import '../../modules/profile/profileScreen.dart';
@@ -72,6 +71,6 @@ class AppCubit extends Cubit<AppStates> {
 
   List<dynamic> Reservations = [];
   void getReservation() {
-    emit(AppLoadingBookingDataState());
+    emit(ManagerLoadingState());
   }
 }
