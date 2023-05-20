@@ -1,24 +1,24 @@
 import 'package:dio/dio.dart';
 
-class DioHelper{
-
+class DioHelper {
   static Dio? dio;
-  static init()
-  {
+  static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://488e-45-242-171-229.ngrok-free.app/',
-        receiveDataWhenStatusError: true ,
-
+        baseUrl: 'https://cf26-45-242-15-102.ngrok-free.app/',
+        receiveDataWhenStatusError: true,
       ),
     );
   }
 
   static Future<Response> getData({
     required String url,
-    required Map<String, dynamic> query,
-  }) async
-  {
+    Map<String, dynamic>? query,
+    String? token,
+  }) async {
+    dio!.options.headers = {
+      'Authorization': token ?? '',
+    };
     return await dio!.get(
       url,
       queryParameters: query,
@@ -29,16 +29,11 @@ class DioHelper{
     required String url,
     required Map<String, dynamic> data,
     Map<String, dynamic>? query,
-    // String lang = 'en',
-    // String? token,
-  }) async
-  {
-    // dio!.options.headers =
-    // {
-    //   'lang':lang,
-    //   'Authorization': token??'',
-    //   'Content-Type': 'application/json',
-    // };
+    String? token,
+  }) async {
+    dio!.options.headers = {
+      'Authorization': token ?? '',
+    };
 
     return await dio!.post(
       url,
@@ -46,18 +41,17 @@ class DioHelper{
       data: data,
     );
   }
+
   static Future<Response> putData({
     required String url,
     required Map<String, dynamic> data,
     Map<String, dynamic>? query,
     String lang = 'en',
     String? token,
-  }) async
-  {
-    dio!.options.headers =
-    {
-      'lang':lang,
-      'Authorization': token??'',
+  }) async {
+    dio!.options.headers = {
+      'lang': lang,
+      'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };
 

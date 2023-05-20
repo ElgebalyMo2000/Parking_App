@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-//import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-//import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:intl/intl.dart';
 
 class bookParking extends StatefulWidget {
   const bookParking({super.key});
@@ -61,7 +61,7 @@ class _bookParking extends State<bookParking> {
         //mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Selected Date', //: ${DateFormat('yyyy-MM-dd').format(_selectedDate)}',
+            'Selected Date: ${DateFormat('yyyy-MM-dd').format(_selectedDate)}',
             style: const TextStyle(fontSize: 18),
           ),
           const SizedBox(height: 20),

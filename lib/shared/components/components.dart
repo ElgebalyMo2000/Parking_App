@@ -1,5 +1,11 @@
+import 'package:dbproject/shared/cache_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:getwidget/components/avatar/gf_avatar.dart';
+import 'package:getwidget/shape/gf_avatar_shape.dart';
+
+import '../../modules/loginScreen/loginScreen.dart';
 
 Widget defaultButton({
   double width = 337.0,
@@ -35,7 +41,7 @@ Widget defaultTextFormField({
   Function(String)? onChange,
   VoidCallback? onTap,
   String? Function(String?)? validate,
-  required String label,
+  String? label,
   IconData? prefix,
   IconData? suffix,
   bool isPassword = false,
@@ -43,6 +49,7 @@ Widget defaultTextFormField({
   VoidCallback? suffixPressed,
   required TextInputType Type,
   Color? backgroundColor = Colors.white,
+  String? labelText,
   //bool isClickable = true,
 }) =>
     TextFormField(
@@ -230,3 +237,5 @@ bool isEmailValid(String email) {
   final regExp = RegExp(pattern);
   return regExp.hasMatch(email);
 }
+
+Widget BuildReservationIten() => Padding(padding: padding);
