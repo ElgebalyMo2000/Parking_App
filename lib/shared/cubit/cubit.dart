@@ -6,6 +6,7 @@ import 'package:dbproject/modules/booking/booking.dart';
 import 'package:dbproject/modules/managerLot/Reservations.dart';
 import 'package:dbproject/modules/managerLot/Reservations.dart';
 import 'package:dbproject/modules/managerLot/Reservations.dart';
+import 'package:dbproject/modules/managerLot/Reservations.dart';
 import 'package:dbproject/modules/parkinglotScreen/lotScreen.dart';
 
 import 'package:dbproject/shared/components/components.dart';
@@ -17,10 +18,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../modules/managerLot/Activation.dart';
 import '../../modules/managerLot/Cancellation.dart';
 import '../../modules/managerLot/Pending.dart';
-
-import '../../modules/managerLot/Reservations.dart';
-import '../../modules/managerLot/Reservations.dart';
-import '../../modules/managerLot/Reservations.dart';
 import '../../modules/managerLot/Reservations.dart';
 import '../../modules/managerLot/expired.dart';
 import '../../modules/profile/profileScreen.dart';
