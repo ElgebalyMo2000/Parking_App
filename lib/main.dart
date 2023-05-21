@@ -1,6 +1,6 @@
 import 'package:dbproject/modules/loginScreen/splashScreen.dart';
-import 'package:dbproject/modules/managerLot/manager_home_layout.dart';
 import 'package:dbproject/shared/bloc_observer.dart';
+import 'package:dbproject/shared/components/constants.dart';
 import 'package:dbproject/shared/cubit/cubit.dart';
 import 'package:dbproject/shared/cubit/states.dart';
 import 'package:dbproject/shared/remote/dio_helper.dart';
@@ -17,9 +17,13 @@ import 'shared/cache_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
+
+  var token = CacheHelper.getData(key: 'token');
+
   runApp(MyApp());
 }
 
@@ -31,7 +35,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AppCubit()),
+        BlocProvider(
+          create: (BuildContext context) => AppCubit(),
+        ),
         BlocProvider(
           create: (BuildContext context) => AppLoginCubit(),
         ),
@@ -42,7 +48,6 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              //primarySwatch: Colors.black,
               visualDensity: VisualDensity.adaptivePlatformDensity,
               appBarTheme: const AppBarTheme(
                 backgroundColor: Colors.white,
@@ -66,7 +71,7 @@ class MyApp extends StatelessWidget {
                 selectedItemColor: Colors.black,
               ),
             ),
-            home: const splashScreen(),
+            home: splashScreen(),
           );
         },
       ),

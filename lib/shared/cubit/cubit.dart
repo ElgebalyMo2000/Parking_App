@@ -1,4 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
+import 'dart:convert';
 
 import 'package:dbproject/modules/booking/booking.dart';
 
@@ -27,7 +28,7 @@ class AppCubit extends Cubit<AppStates> {
 
   int currentIndex = 0;
   int len = 0;
-  //String basUrl = 'https://0e53-45-242-15-102.ngrok-free.app/';
+
   List<Widget> screens = [
     ParkingLot(),
     BookingScreen(),
@@ -74,7 +75,7 @@ class AppCubit extends Cubit<AppStates> {
     DioHelper.getData(url: lotReservations, query: {
       'page': '1',
       'per_page': '10',
-      token: CacheHelper.getData(key: 'token')
+      //token: CacheHelper.getData(key: 'token')
     }).then((value) {
       // if (value != null) {
       value.data.forEach((element) {
@@ -137,7 +138,7 @@ class AppCubit extends Cubit<AppStates> {
       'state': 'active',
       'page': '1',
       'per_page': '5',
-      token: CacheHelper.getData(key: 'token')
+      //token: CacheHelper.getData(key: 'token')
     }).then((value) {
       // if (value != null) {
       // value.data.forEach((element) {
@@ -168,7 +169,7 @@ class AppCubit extends Cubit<AppStates> {
       'state': 'expired',
       'page': '1',
       'per_page': '5',
-      token: CacheHelper.getData(key: 'token')
+      //token: CacheHelper.getData(key: 'token')
     }).then((value) {
       // if (value != null) {
       // value.data.forEach((element) {
@@ -199,7 +200,7 @@ class AppCubit extends Cubit<AppStates> {
       'state': 'cancelled by customer',
       'page': '1',
       'per_page': '5',
-      token: CacheHelper.getData(key: 'token')
+      //token: CacheHelper.getData(key: 'token')
     }).then((value) {
       // if (value != null) {
       // value.data.forEach((element) {

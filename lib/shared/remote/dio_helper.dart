@@ -28,9 +28,7 @@ class DioHelper {
     Map<String, dynamic>? query,
     String? token,
   }) async {
-    dio!.options.headers = {
-      'Authorization': token ?? '',
-    };
+    dio?.options.headers['Authorization'] = token;
 
     return await dio!.post(
       url,

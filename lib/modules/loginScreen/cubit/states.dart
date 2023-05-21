@@ -16,3 +16,31 @@ class AppLoginErrorState extends AppLoginStates
   final String error;
   AppLoginErrorState(this.error);
 }
+
+class AppGetUserLoadingState extends AppLoginStates {}
+
+class AppGetUserSuccessState extends AppLoginStates {}
+
+class AppGetUserErrorState extends AppLoginStates {
+  final String error;
+
+  AppGetUserErrorState(this.error);
+}
+
+
+class AppLoadingBookingDataState extends AppLoginStates {}
+
+class AppErrorBookingDataState extends AppLoginStates {}
+
+class AppSuccessBookingDataState extends AppLoginStates {}
+
+
+class AppLoadingReservationsState extends AppLoginStates {}
+
+class AppErrorReservationsState extends AppLoginStates {
+  late String error;
+
+  AppErrorReservationsState(this.error);
+}
+
+class AppSuccessReservationsState extends AppLoginStates {}

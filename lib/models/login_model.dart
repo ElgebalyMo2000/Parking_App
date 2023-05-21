@@ -7,10 +7,14 @@ class AppLoginModel {
 }
 
 class UserData {
-  String? detail;
+  String? name;
+  String? email;
+  String? phone;
+  String? vehicleNum;
+  String? gender;
 
   // UserData({
-  //   this.id,
+  //
   //   this.name,
   //   this.email,
   //   this.phone,
@@ -20,26 +24,24 @@ class UserData {
 
   // named constructor
   UserData.fromJson(Map<String, dynamic> json) {
-    detail = json['detail'];
+    name = json['name'];
+    email = json['email'];
+    phone = json['phone_number'];
+    gender = json['gender'];
+    vehicleNum = json['vehicle_number'];
   }
 }
 
 class BookingDataModel {
   int? duration;
-  int? customerId;
   int? id;
-  String? startTime;
   String? state;
-  double? totalPay;
-  int? slotId;
+  String? lotName;
 
   BookingDataModel.fromJson(Map<String, dynamic> json) {
     duration = json['duration'];
-    customerId = json['customer_id'];
     id = json['id'];
-    startTime = json['start_time'];
     state = json['state'];
-    totalPay = json['total_pay'];
-    slotId = json['slot_id'];
+    lotName = json['lot_name'];
   }
 }

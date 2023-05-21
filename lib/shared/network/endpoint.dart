@@ -4,3 +4,6 @@ const RESERVATIONS = 'reservations/customer';
 const lotReservations = 'reservations/parking-lot';
 
 //const customerDetails = 'reservations/parking-lot/${idCustomer}';
+
+const me = 'customers/me';
+const reserve = 'reservations/';

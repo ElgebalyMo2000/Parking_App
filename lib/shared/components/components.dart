@@ -49,6 +49,7 @@ Widget defaultTextFormField({
   VoidCallback? onTap,
   String? Function(String?)? validate,
   String? label,
+  String? labelText,
   IconData? prefix,
   IconData? suffix,
   bool isPassword = false,
@@ -56,7 +57,7 @@ Widget defaultTextFormField({
   VoidCallback? suffixPressed,
   required TextInputType Type,
   Color? backgroundColor = Colors.white,
-  String? labelText,
+
   //bool isClickable = true,
 }) =>
     TextFormField(

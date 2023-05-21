@@ -17,6 +17,8 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
     required String password,
     required String name,
     required String phone,
+    required String gender,
+    required String vehicle,
   }) {
     emit(AppRegisterLoadingState());
     DioHelper.postData(
@@ -26,6 +28,8 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
         'email': email,
         'phone_number': phone,
         'password': password,
+        'gender': gender,
+        'vehicle_number' : vehicle
       },
     ).then((value) {
       print(value.data);

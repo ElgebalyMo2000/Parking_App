@@ -4,18 +4,22 @@ import 'package:getwidget/components/avatar/gf_avatar.dart';
 import 'package:getwidget/shape/gf_avatar_shape.dart';
 
 import '../../shared/components/components.dart';
+import '../NewBooking/bookBarkingDetails.dart';
 
  class DescriptionScreen extends StatelessWidget {
 
   const DescriptionScreen(
       {Key? key,
-      required this.title,}
+      required this.title,
+      required this.id
+      }
       ) : super(key: key);
   final String? title;
-
+  final int id;
   @override
   Widget build(BuildContext context) {
     print('Title: ${title}');
+    print('Title: ${id}');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -62,7 +66,9 @@ import '../../shared/components/components.dart';
               ),
               SizedBox(height: 30.0,),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              navigateTo(context, bookParking(id: id,));
+            },
             child: Center(
               child: Container(
                 width: 200.0,
