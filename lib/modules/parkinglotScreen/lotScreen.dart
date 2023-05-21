@@ -37,7 +37,11 @@ class ParkingLot extends StatelessWidget {
                         child: MaterialButton(
                           onPressed: ()
                           {
-                              navigateTo(context, DescriptionScreen( title: 'M.Pool Garage'));
+                              navigateTo(context, DescriptionScreen(
+                                title: 'M.Pool Garage',
+                              id: 5,
+                              )
+                              );
                           },
                           child: Padding(
                             padding: const EdgeInsetsDirectional.only(start: 5.0),
@@ -76,7 +80,9 @@ class ParkingLot extends StatelessWidget {
                         child: MaterialButton(
                           onPressed: ()
                           {
-                            navigateTo(context, DescriptionScreen( title: 'Cairo Station Parking'));
+                            navigateTo(context, DescriptionScreen( title: 'Cairo Station Parking',
+                            id: 2,
+                            ));
                           },
                           child: Padding(
                             padding: const EdgeInsetsDirectional.only(start: 5.0),
@@ -115,7 +121,10 @@ class ParkingLot extends StatelessWidget {
                         child: MaterialButton(
                           onPressed: ()
                           {
-                            navigateTo(context, DescriptionScreen( title: 'Al Noor Mosque Parking'));
+                            navigateTo(context, DescriptionScreen(
+                                title: 'Al Noor Mosque Parking',
+                              id: 6,
+                            ));
                           },
                           child: Padding(
                             padding: const EdgeInsetsDirectional.only(start: 5.0),
@@ -154,7 +163,11 @@ class ParkingLot extends StatelessWidget {
                         child: MaterialButton(
                           onPressed: ()
                           {
-                            navigateTo(context, DescriptionScreen( title: 'Garage Omar Makram'));
+                            navigateTo(context, DescriptionScreen(
+                                title: 'Garage Omar Makram',
+                              id: 7,
+                            )
+                            );
                           },
                           child: Padding(
                             padding: const EdgeInsetsDirectional.only(start: 5.0),
@@ -193,7 +206,10 @@ class ParkingLot extends StatelessWidget {
                         child: MaterialButton(
                           onPressed: ()
                           {
-                            navigateTo(context, DescriptionScreen( title: 'Al Damar Garage'));
+                            navigateTo(context, DescriptionScreen(
+                                title: 'Al Damar Garage',
+                                id: 8,
+                            ));
                           },
                           child: Padding(
                             padding: const EdgeInsetsDirectional.only(start: 5.0),

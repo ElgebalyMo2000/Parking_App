@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dbproject/modules/booking/booking.dart';
 import 'package:dbproject/modules/parkinglotScreen/lotScreen.dart';
+import 'package:dbproject/shared/cache_helper.dart';
 
 import 'package:dbproject/shared/components/components.dart';
 import 'package:dbproject/shared/components/constants.dart';
@@ -20,7 +21,7 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
-  int len = 0;
+
   List<Widget> screens = [
     ParkingLot(),
     BookingScreen(),
@@ -37,28 +38,6 @@ class AppCubit extends Cubit<AppStates> {
     currentIndex = index;
     emit(AppChangeBottomNavBarState());
   }
-  BookingDataModel? bookingModel;
 
-  void getBookingData(){
-    emit(AppLoadingBookingDataState());
-    print(token);
-    DioHelper.getData(
-        url: RESERVATIONS,
-       token: token,
-    ).then((value) {
-      Map<String, dynamic> mergedMap = {};
-      for (var map in value.data) {
-        mergedMap.addAll(map);
-      }
-      //print(value.data.length);
-      len = value.data.length;
-      //print(mergedMap);
-      bookingModel = BookingDataModel.fromJson(mergedMap);
-      print(bookingModel?.totalPay);
-      emit(AppSuccessBookingDataState());
-    }).catchError((error){
 
-      emit(AppErrorBookingDataState());
-    });
-  }
 }

@@ -25,6 +25,8 @@ class _signupScreenState extends State<signupScreen> {
   var nameController = TextEditingController();
   var phoneController = TextEditingController();
   var vnumberController = TextEditingController();
+  var genderController = TextEditingController();
+
   bool _isVisible = false;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -49,6 +51,15 @@ class _signupScreenState extends State<signupScreen> {
               listener: (context, state){
                 if(state is AppRegisterSuccessState)
                 {
+                  Fluttertoast.showToast(
+                      msg: 'Registration done, please log in',
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 5,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
                   navigateTo(context, LoginScreen());
                 }else if(state is AppRegisterErrorState){
                   Fluttertoast.showToast(
@@ -180,6 +191,22 @@ class _signupScreenState extends State<signupScreen> {
                                   const SizedBox(
                                     height: 10.0,
                                   ),
+                                  defaultTextFormField(
+                                      Type: TextInputType.text,
+                                      controller: genderController,
+                                      validate: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return 'Please Enter your gender';
+                                        }else if(value != 'm' && value != 'f'){
+                                          return ' Please Enter m or f' ;
+                                        }
+                                        return null;
+                                      },
+                                      label: 'Gender',
+                                      prefix: Icons.person),
+                                  const SizedBox(
+                                    height: 10.0,
+                                  ),
                                   const UploadPicture(),
                                   const SizedBox(
                                     height: 10.0,
@@ -194,6 +221,8 @@ class _signupScreenState extends State<signupScreen> {
                                               password: passwordController.text,
                                               name: nameController.text,
                                               phone: phoneController.text,
+                                              gender: genderController.text,
+                                              vehicle: vnumberController.text
                                             );
                                           }
                                         },

@@ -39,9 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocProvider(
-      create: (BuildContext context) => AppLoginCubit(),
-      child: BlocConsumer<AppLoginCubit,AppLoginStates>(
+    return BlocConsumer<AppLoginCubit,AppLoginStates>(
         listener: (context, state){
       if(state is AppLoginSuccessState) {
         print(state.token);
@@ -49,6 +47,9 @@ class _LoginScreenState extends State<LoginScreen> {
             value) {
           navigateAndFinish(context, ParkingLayout());
         });
+        AppLoginCubit.get(context).getUserDate();
+        AppLoginCubit.get(context).reservations = [];
+        AppLoginCubit.get(context).getBookingData();
         }
       if(state is AppLoginErrorState){
          Fluttertoast.showToast(
@@ -185,7 +186,6 @@ class _LoginScreenState extends State<LoginScreen> {
             backgroundColor: Color.fromARGB(255, 0, 0, 0),
           );
         },
-      )
     );
   }
 }

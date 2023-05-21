@@ -9,7 +9,9 @@ class ParkingLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+
+      },
       builder: (context, state) {
         AppCubit cubit = AppCubit.get(context);
         return Scaffold(
