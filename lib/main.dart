@@ -1,4 +1,5 @@
 import 'package:dbproject/modules/loginScreen/splashScreen.dart';
+import 'package:dbproject/modules/managerLot/manager_home_layout.dart';
 import 'package:dbproject/shared/bloc_observer.dart';
 import 'package:dbproject/shared/cubit/cubit.dart';
 import 'package:dbproject/shared/cubit/states.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'modules/details/parking_ticket_screen.dart';
 import 'modules/details/paying_confirmation_screen.dart';
 import 'modules/details/payment_method_screen.dart';
+import 'modules/loginScreen/cubit/cubit.dart';
 import 'modules/timer_scren.dart';
 import 'shared/cache_helper.dart';
 
@@ -27,14 +29,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => AppCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AppCubit()),
+        BlocProvider(
+          create: (BuildContext context) => AppLoginCubit(),
+        ),
+      ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              //primarySwatch: Colors.black,
               visualDensity: VisualDensity.adaptivePlatformDensity,
               appBarTheme: const AppBarTheme(
                 backgroundColor: Colors.white,

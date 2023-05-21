@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:getwidget/components/avatar/gf_avatar.dart';
 import 'package:getwidget/shape/gf_avatar_shape.dart';
 
+import '../../models/resevationsModel.dart';
 import '../../modules/loginScreen/loginScreen.dart';
 import '../cache_helper.dart';
 
@@ -243,38 +244,6 @@ bool isEmailValid(String email) {
   final regExp = RegExp(pattern);
   return regExp.hasMatch(email);
 }
-
-Widget BuildReservationItem() => Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            color: Colors.grey.withOpacity(.1),
-          ),
-          child: MaterialButton(
-            onPressed: () {},
-            child: const Column(
-              children: [
-                Text(
-                  'data',
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 50.0,
-                ),
-                Row(
-                  children: [
-                    Text('data'),
-                    SizedBox(
-                      width: 20.0,
-                    ),
-                    Text('data'),
-                  ],
-                )
-              ],
-            ),
-          )),
-    );
 
 Widget dividerItem() => Padding(
       padding: const EdgeInsetsDirectional.only(

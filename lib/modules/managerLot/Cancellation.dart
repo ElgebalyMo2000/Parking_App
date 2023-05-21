@@ -5,6 +5,12 @@ class Cancellation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+          child: Text(
+        'expired',
+        style: TextStyle(fontSize: 50.0, color: Colors.amber),
+      )),
+    );
   }
 }

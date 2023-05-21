@@ -1,17 +1,12 @@
-class AppLoginModel
-{
-
+class AppLoginModel {
   late String detail;
 
-  AppLoginModel.fromJson(Map<String, dynamic> json)
-  {
+  AppLoginModel.fromJson(Map<String, dynamic> json) {
     detail = json['detail'];
   }
 }
 
-class UserData
-{
-
+class UserData {
   String? detail;
 
   // UserData({
@@ -24,8 +19,7 @@ class UserData
   // });
 
   // named constructor
-  UserData.fromJson(Map<String, dynamic> json)
-  {
+  UserData.fromJson(Map<String, dynamic> json) {
     detail = json['detail'];
   }
 }
@@ -39,7 +33,7 @@ class BookingDataModel {
   double? totalPay;
   int? slotId;
 
-  BookingDataModel.fromJson(Map<String, dynamic> json){
+  BookingDataModel.fromJson(Map<String, dynamic> json) {
     duration = json['duration'];
     customerId = json['customer_id'];
     id = json['id'];
