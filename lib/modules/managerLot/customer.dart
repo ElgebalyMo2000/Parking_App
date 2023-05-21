@@ -1,3 +1,4 @@
+import 'package:dbproject/modules/managerLot/Reservations.dart';
 import 'package:flutter/material.dart';
 
 class CustomerDetails extends StatefulWidget {
@@ -10,6 +11,15 @@ class CustomerDetails extends StatefulWidget {
 class _CustomerDetailsState extends State<CustomerDetails> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ReservationScreen()));
+            },
+            icon: const Icon(Icons.arrow_back)),
+      ),
+    );
   }
 }
