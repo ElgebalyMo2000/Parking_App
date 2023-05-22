@@ -72,24 +72,29 @@ class AppCubit extends Cubit<AppStates> {
   void getReservations() {
     emit(AppLoadingBookingDataState());
 
-    DioHelper.getData(url: lotReservations, query: {
-      'page': '1',
-      'per_page': '10',
-    },
-    token: CacheHelper.getData(key: 'secret')
+    DioHelper.getData(
+      url: lotReservations,
+      query: {
+        'page': '1',
+        'per_page': '10',
+      },
+      token: CacheHelper.getData(key: 'secret'),
     ).then((value) {
-      // if (value != null) {
-      value.data.forEach((element) {
-        Map<String, dynamic> mergedMap = {};
-        for (var map in value.data) {
-          mergedMap.addAll(map);
-        }
-        reservationsLot.add(mergedMap);
-      });
-      print(reservationsLot[0]['state']);
-      //}
-      reservationsModel = ReservationsModel.fromJson(value.data);
-      print(reservationsModel.toString());
+      if (value != []) {
+        value.data.forEach((element) {
+          Map<String, dynamic> mergedMap = {};
+          for (var map in value.data) {
+            mergedMap.addAll(map);
+          }
+          reservationsLot.add(mergedMap);
+        });
+        print(reservationsLot[0]['state']);
+      }
+
+      //reservationsModel = ReservationsModel.fromJson(value.data);
+      //print(reservationsModel.toString());
+
+      //print(reservationsModel?.id.toString());
 
       emit(ReservationsSuccessState());
     }).catchError((error) {
@@ -104,24 +109,28 @@ class AppCubit extends Cubit<AppStates> {
   void getPendingReservations() {
     emit(AppLoadingBookingDataState());
 
-    DioHelper.getData(url: lotReservations, query: {
-      'state': 'pending',
-      'page': '1',
-      'per_page': '10',
-      //token: CacheHelper.getData(key: 'token')
-    }).then((value) {
-      //if (value != null) {
-      //value.data.forEach((element) {
-      // Map<String, dynamic> mergedMap = {};
-      // for (var map in value.data) {
-      // mergedMap.addAll(map);
-      //}
-      // reservationsLot.add(mergedMap);
-      // });
-      // print(reservationsLot[0]['state']);
-      //}
-      reservationsPendingModel = ReservationsModel.fromJson(value.data);
-      print(reservationsPendingModel.toString());
+    DioHelper.getData(
+      url: lotReservations,
+      query: {
+        'state': 'pending',
+        'page': '1',
+        'per_page': '10',
+      },
+      token: CacheHelper.getData(key: 'secret'),
+    ).then((value) {
+      if (value != null) {
+        value.data.forEach((element) {
+          Map<String, dynamic> mergedMap = {};
+          for (var map in value.data) {
+            mergedMap.addAll(map);
+          }
+          reservationsPendingLot.add(mergedMap);
+        });
+        print(reservationsPendingLot[0]['state']);
+      }
+      //reservationsPendingModel = ReservationsModel.fromJson(value.data);
+
+      //print(reservationsPendingModel.toString());
 
       emit(ReservationsSuccessState());
     }).catchError((error) {
@@ -135,24 +144,27 @@ class AppCubit extends Cubit<AppStates> {
   void getActiveReservations() {
     emit(AppLoadingBookingDataState());
 
-    DioHelper.getData(url: lotReservations, query: {
-      'state': 'active',
-      'page': '1',
-      'per_page': '5',
-      //token: CacheHelper.getData(key: 'token')
-    }).then((value) {
-      // if (value != null) {
-      // value.data.forEach((element) {
-      //  Map<String, dynamic> mergedMap = {};
-      // for (var map in value.data) {
-      //  mergedMap.addAll(map);
-      //  }
-      //reservationsLot.add(mergedMap);
-      //});
-      // print(reservationsLot[0]['state']);
-      //}
-      reservationsActiveModel = ReservationsModel.fromJson(value.data);
-      print(reservationsActiveModel.toString());
+    DioHelper.getData(
+      url: lotReservations,
+      query: {
+        'state': 'active',
+        'page': '1',
+        'per_page': '5',
+      },
+      token: CacheHelper.getData(key: 'secret'),
+    ).then((value) {
+      if (value != null) {
+        value.data.forEach((element) {
+          Map<String, dynamic> mergedMap = {};
+          for (var map in value.data) {
+            mergedMap.addAll(map);
+          }
+          reservationsActiveLot.add(mergedMap);
+        });
+        print(reservationsActiveLot[0]['state']);
+      }
+      //reservationsActiveModel = ReservationsModel.fromJson(value.data);
+      //print(reservationsActiveModel.toString());
 
       emit(ReservationsSuccessState());
     }).catchError((error) {
@@ -166,24 +178,27 @@ class AppCubit extends Cubit<AppStates> {
   void getExpiredReservations() {
     emit(AppLoadingBookingDataState());
 
-    DioHelper.getData(url: lotReservations, query: {
-      'state': 'expired',
-      'page': '1',
-      'per_page': '5',
-      //token: CacheHelper.getData(key: 'token')
-    }).then((value) {
-      // if (value != null) {
-      // value.data.forEach((element) {
-      //  Map<String, dynamic> mergedMap = {};
-      //  for (var map in value.data) {
-      //   mergedMap.addAll(map);
-      // }
-      // reservationsLot.add(mergedMap);
-      // });
-      // print(reservationsLot[0]['state']);
-      //}
-      reservationsExpireModel = ReservationsModel.fromJson(value.data);
-      print(reservationsExpireModel.toString());
+    DioHelper.getData(
+      url: lotReservations,
+      query: {
+        'state': 'expired',
+        'page': '1',
+        'per_page': '5',
+      },
+      token: CacheHelper.getData(key: 'secret'),
+    ).then((value) {
+      if (value != null) {
+        value.data.forEach((element) {
+          Map<String, dynamic> mergedMap = {};
+          for (var map in value.data) {
+            mergedMap.addAll(map);
+          }
+          reservationsExpireLot.add(mergedMap);
+        });
+        print(reservationsExpireLot[0]['state']);
+      }
+      //reservationsExpireModel = ReservationsModel.fromJson(value.data);
+      //print(reservationsExpireModel.toString());
 
       emit(ReservationsSuccessState());
     }).catchError((error) {
@@ -197,24 +212,27 @@ class AppCubit extends Cubit<AppStates> {
   void getCanceledReservations() {
     emit(AppLoadingBookingDataState());
 
-    DioHelper.getData(url: lotReservations, query: {
-      'state': 'cancelled by customer',
-      'page': '1',
-      'per_page': '5',
-      //token: CacheHelper.getData(key: 'token')
-    }).then((value) {
-      // if (value != null) {
-      // value.data.forEach((element) {
-      // Map<String, dynamic> mergedMap = {};
-      // for (var map in value.data) {
-      // mergedMap.addAll(map);
-      // }
-      // reservationsLot.add(mergedMap);
-      //});
-      // print(reservationsLot[0]['state']);
-      //}
-      reservationsCancelModel = ReservationsModel.fromJson(value.data);
-      print(reservationsCancelModel.toString());
+    DioHelper.getData(
+      url: lotReservations,
+      query: {
+        'state': 'cancelled by customer',
+        'page': '1',
+        'per_page': '5',
+      },
+      token: CacheHelper.getData(key: 'secret'),
+    ).then((value) {
+      if (value != null) {
+        value.data.forEach((element) {
+          Map<String, dynamic> mergedMap = {};
+          for (var map in value.data) {
+            mergedMap.addAll(map);
+          }
+          reservationsCancelLot.add(mergedMap);
+        });
+        print(reservationsCancelLot[0]['state']);
+      }
+      //reservationsCancelModel = ReservationsModel.fromJson(value.data);
+      //print(reservationsCancelModel.toString());
 
       emit(ReservationsSuccessState());
     }).catchError((error) {

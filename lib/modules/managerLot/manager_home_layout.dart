@@ -27,32 +27,34 @@ class ManagerHomeLayout extends StatelessWidget {
             //selectedItemColor: Colors.black,
             items: const [
               BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.list,
-                    color: Color.fromARGB(255, 176, 176, 176),
-                  ),
-                  label: 'Reservations'),
+                icon: Icon(
+                  Icons.list,
+                  color: Color.fromARGB(255, 176, 176, 176),
+                ),
+                //label: 'Reservations'
+              ),
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.check_circle,
                   color: Color.fromARGB(255, 176, 176, 176),
                 ),
-                label: 'Activation',
+                // label: 'Activation',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.pending,
                     color: Color.fromARGB(255, 176, 176, 176)),
-                label: 'Pending',
+                // label: 'Pending',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.access_time,
                     color: Color.fromARGB(255, 176, 176, 176)),
-                label: 'Expired',
+                //  label: 'Expired',
               ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.free_cancellation,
-                      color: Color.fromARGB(255, 176, 176, 176)),
-                  label: 'Cancel'),
+                icon: Icon(Icons.free_cancellation,
+                    color: Color.fromARGB(255, 176, 176, 176)),
+                // label: 'Cancel'
+              ),
             ],
             currentIndex: cubit.currentIndex,
             onTap: (indexManger) {

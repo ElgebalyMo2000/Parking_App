@@ -1,4 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:dbproject/modules/managerLot/customer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +42,10 @@ Widget ReservationBuilder(Map reservationsPendingModel, context) => Padding(
           color: Colors.grey.withOpacity(.1),
         ),
         child: MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => CustomerDetails()));
+          },
           child: Column(
             children: [
               Text(
