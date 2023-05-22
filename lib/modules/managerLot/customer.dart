@@ -2,6 +2,8 @@ import 'package:dbproject/modules/managerLot/Reservations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../models/login_model.dart';
+
 class CustomerDetails extends StatefulWidget {
   const CustomerDetails({super.key});
 
@@ -38,11 +40,29 @@ class _CustomerDetailsState extends State<CustomerDetails> {
               ),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Text('data'),
-                      Text('data'),
-                    ],
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Text('Parking Lot : '),
+                        Text('data'),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Text('data'),
+                        Text('data'),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Text('data'),
+                        Text('data'),
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -37,11 +37,15 @@ class BookingDataModel {
   int? id;
   String? state;
   String? lotName;
+  String? start_time;
+  int? total_pay;
 
   BookingDataModel.fromJson(Map<String, dynamic> json) {
     duration = json['duration'];
     id = json['id'];
     state = json['state'];
     lotName = json['lot_name'];
+    start_time = json['start_time'];
+    total_pay = json['total_pay'];
   }
 }
