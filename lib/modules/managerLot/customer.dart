@@ -8,13 +8,15 @@ import '../../shared/cubit/cubit.dart';
 import '../../shared/cubit/states.dart';
 
 class CustomerDetails extends StatelessWidget {
-  const CustomerDetails({super.key});
+  const CustomerDetails({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        var customDetails = AppCubit.get(context).details;
+
         return Scaffold(
           appBar: AppBar(
             title: const Text(
@@ -29,59 +31,60 @@ class CustomerDetails extends StatelessWidget {
                 },
                 icon: const Icon(Icons.arrow_back)),
           ),
-          body: Column(
-            children: [
-              Map: CustomerInformation(),
-               defaultButton(function:() {
-
-                  }, text: 'Activate'),
-                  defaultButton(function: (){
-
-                  }, text: 'Cancel')
-            ],
-          ),
+          body: customDetails.isNotEmpty
+              ? ListView.separated(
+                  itemBuilder: (context, index) =>
+                      CustomerInformation(customDetails[index], context),
+                  separatorBuilder: (context, index) => dividerItem(),
+                  itemCount: customDetails.length,
+                  physics: const BouncingScrollPhysics(),
+                )
+              : const Center(
+                  child: Text('No customer details available'),
+                ),
         );
       },
     );
   }
 }
 
-Widget CustomerInformation(Map bookingData , context )=> Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                color: Colors.grey.withOpacity(.1),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+Widget CustomerInformation(Map bookingData, context) => Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          color: Colors.grey.withOpacity(.1),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Row(
                 children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Text('Parking Lot Name : ${bookingData['lot_name']}'),
-                        Text('ID : ${bookingData['id']}'),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Text('State : ${bookingData['state']}'),
-                        Text('Duration : ${bookingData['duration']}'),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Text('Start Time : ${bookingData['start_time']}'),
-                        Text('Total Pay : ${bookingData['total_pay']}'),
-                      ],
-                    ),
-                  ),
-  
+                  Text('Parking Lot Name : ${bookingData['lot_name']}'),
+                  Text('ID : ${bookingData['id']}'),
                 ],
               ),
             ),
-          );
+            Expanded(
+              child: Row(
+                children: [
+                  Text('State : ${bookingData['state']}'),
+                  Text('Duration : ${bookingData['duration']}'),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Text('Start Time : ${bookingData['start_time']}'),
+                  Text('Total Pay : ${bookingData['total_pay']}'),
+                ],
+              ),
+            ),
+            defaultButton(function: () {}, text: 'Activate'),
+            defaultButton(function: () {}, text: 'Cancel')
+          ],
+        ),
+      ),
+    );
