@@ -69,14 +69,14 @@ class AppCubit extends Cubit<AppStates> {
   List<Map<String, dynamic>> reservationsLot = [];
   ReservationsModel? reservationsModel;
 
-  Future<int> getId() async {
-    final _response = await DioHelper.getData(
+  Future<String> getId() async {
+    final response = await DioHelper.getData(
       url: lotReservations,
       token: CacheHelper.getData(key: 'secret'),
     );
 
-    final reservations_id = _response.data['id'] as int;
-    return reservations_id;
+    final reservations_id = response.data['id'] ;
+    return reservations_id.toString();
   }
 
   Future<void> getReservations() async {
@@ -91,7 +91,7 @@ class AppCubit extends Cubit<AppStates> {
         },
         token: CacheHelper.getData(key: 'secret'),
       );
-      await getId.toString();
+    //  await getId.toString();
       if (response != null) {
         response.data.forEach((element) {
           Map<String, dynamic> mergedMap = {};

@@ -25,7 +25,7 @@ class Cancellation extends StatelessWidget {
                 itemCount: lotReserveCancel.length,
                 physics: const BouncingScrollPhysics(),
               )
-            : const Scaffold(
+            :  Scaffold(
                 body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
