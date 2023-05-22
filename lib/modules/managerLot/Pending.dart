@@ -25,7 +25,7 @@ class Pending extends StatelessWidget {
                 itemCount: lotReservePending.length,
                 physics: const BouncingScrollPhysics(),
               )
-            : const Scaffold(
+            :  Scaffold(
                 body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
