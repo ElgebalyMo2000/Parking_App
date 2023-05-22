@@ -44,3 +44,20 @@ class AppErrorReservationsState extends AppLoginStates {
 }
 
 class AppSuccessReservationsState extends AppLoginStates {}
+
+
+
+class AppManInitialState extends AppLoginStates{}
+
+class AppManLoadingState extends AppLoginStates{}
+
+class AppManSuccessState extends AppLoginStates{
+  String? token;
+  AppManSuccessState(this.token);
+}
+
+class AppManErrorState extends AppLoginStates
+{
+  final String error;
+  AppManErrorState(this.error);
+}

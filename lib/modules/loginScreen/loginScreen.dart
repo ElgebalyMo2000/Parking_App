@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:dbproject/Layout/parkinglayout.dart';
 import 'package:dbproject/modules/loginScreen/cubit/cubit.dart';
 import 'package:dbproject/modules/loginScreen/cubit/states.dart';
+import 'package:dbproject/modules/managerLot/manager_home_layout.dart';
 
 import 'package:dbproject/modules/signup/signUp.dart';
 import 'package:dbproject/shared/components/components.dart';
@@ -51,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
         AppLoginCubit.get(context).reservations = [];
         AppLoginCubit.get(context).getBookingData();
         }
-      if(state is AppLoginErrorState){
+      if(state is AppLoginErrorState || state is AppManErrorState){
          Fluttertoast.showToast(
             msg:'Please ensure you have entered the correct login information.' ,
             toastLength: Toast.LENGTH_LONG,
@@ -61,6 +62,13 @@ class _LoginScreenState extends State<LoginScreen> {
             textColor: Colors.white,
             fontSize: 16.0
         );
+      }
+      if(state is AppManSuccessState){
+        print(state.token);
+        CacheHelper.saveData(key: 'secret', value:state.token).then((
+            value) {
+          navigateAndFinish(context, ManagerHomeLayout());
+        });
       }
 
       },
@@ -109,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   }
                                   return null;
                                 },
-                                label: 'Email Address',
+                                label: 'Email Address/Parking-lot',
                                 prefix: Icons.email),
                             const SizedBox(
                               height: 10.0,
@@ -123,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 }
                                 return null;
                               },
-                              label: 'password',
+                              label: 'Password',
                               prefix: Icons.lock,
                               suffix: isPassword
                                   ? Icons.visibility_outlined
@@ -153,6 +161,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             SizedBox(
                               height: 5.0,
+                            ),
+                            ConditionalBuilder(
+                              condition: state is! AppManLoadingState,
+                              builder: (context) =>  defaultButton(
+                                  function: () {
+                                      AppLoginCubit.get(context).managerLogin(
+                                        name: emailController.text,
+                                        secret: passwordController.text,
+                                      );
+                                  },
+                                  text: 'sign in as manager'), fallback: (BuildContext context) => Center(child: CircularProgressIndicator()),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,

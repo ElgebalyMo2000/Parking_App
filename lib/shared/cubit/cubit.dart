@@ -69,13 +69,15 @@ class AppCubit extends Cubit<AppStates> {
   List<Map<String, dynamic>> reservationsLot = [];
   ReservationsModel? reservationsModel;
 
-  void getReservations() {
+  void getReservations({
+    required String token
+    }) {
     emit(AppLoadingBookingDataState());
 
     DioHelper.getData(url: lotReservations, query: {
       'page': '1',
       'per_page': '10',
-      //token: CacheHelper.getData(key: 'token')
+      token: CacheHelper.getData(key: 'secret')
     }).then((value) {
       // if (value != null) {
       value.data.forEach((element) {

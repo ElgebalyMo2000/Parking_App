@@ -102,4 +102,23 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
       emit(AppErrorReservationsState(error.toString()));
     });
   }
+  Future<void> managerLogin({
+    required String name,
+    required String secret,
+  } ) async{
+    emit(AppManLoadingState());
+    DioHelper.postData(
+      url: MANAGER,
+      data: {
+        'name': name,
+        'secret': secret,
+      },
+    ).then((value) {
+      token = value.data;
+      emit(AppManSuccessState(token));
+    }).catchError((error) {
+      emit(AppManErrorState(error.toString()));
+    });
+  }
+
 }
