@@ -69,16 +69,15 @@ class AppCubit extends Cubit<AppStates> {
   List<Map<String, dynamic>> reservationsLot = [];
   ReservationsModel? reservationsModel;
 
-  void getReservations({
-    required String token
-    }) {
+  void getReservations() {
     emit(AppLoadingBookingDataState());
 
     DioHelper.getData(url: lotReservations, query: {
       'page': '1',
       'per_page': '10',
-      token: CacheHelper.getData(key: 'secret')
-    }).then((value) {
+    },
+    token: CacheHelper.getData(key: 'secret')
+    ).then((value) {
       // if (value != null) {
       value.data.forEach((element) {
         Map<String, dynamic> mergedMap = {};
