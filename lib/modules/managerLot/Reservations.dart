@@ -14,24 +14,36 @@ class ReservationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
-      listener: (BuildContext context, state) {},
-      builder: (BuildContext context, Object? state) {
-        var lotReserve = AppCubit.get(context).reservationsLot;
+        listener: (BuildContext context, state) {},
+        builder: (BuildContext context, Object? state) {
+          var lotReserve = AppCubit.get(context).reservationsLot;
+          print(lotReserve.length);
 
-        return ConditionalBuilder(
-          condition: AppCubit.get(context).reservationsModel != null,
-          builder: (context) => ListView.separated(
-            itemBuilder: (context, index) =>
-                ReservationBuilder(lotReserve[index], context),
-            separatorBuilder: (context, index) => dividerItem(),
-            itemCount: lotReserve.length,
-            physics: const BouncingScrollPhysics(),
-          ),
-          fallback: (context) =>
-              const Center(child: CircularProgressIndicator()),
-        );
-      },
-    );
+          return (lotReserve.isNotEmpty)
+              ? ListView.separated(
+                  itemBuilder: (context, index) =>
+                      ReservationBuilder(lotReserve[index], context),
+                  separatorBuilder: (context, index) => dividerItem(),
+                  itemCount: lotReserve.length,
+                  physics: const BouncingScrollPhysics(),
+                )
+              : const Scaffold(
+                  body: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'No Reservations',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Colors.grey),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+        });
   }
 }
 
@@ -51,15 +63,16 @@ Widget ReservationBuilder(Map reservationsModel, context) => Padding(
             children: [
               Text(
                 '${reservationsModel['customer_name']}',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50.0,
               ),
               Row(
                 children: [
                   Text('State : ${reservationsModel['state']}'),
-                  SizedBox(
+                  const SizedBox(
                     width: 20.0,
                   ),
                   Text('Duration : ${reservationsModel['duration']}'),

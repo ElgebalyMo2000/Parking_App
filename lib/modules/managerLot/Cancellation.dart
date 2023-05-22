@@ -17,18 +17,30 @@ class Cancellation extends StatelessWidget {
       builder: (BuildContext context, Object? state) {
         var lotReserveCancel = AppCubit.get(context).reservationsCancelLot;
 
-        return ConditionalBuilder(
-          condition: AppCubit.get(context).reservationsCancelModel != null,
-          builder: (context) => ListView.separated(
-            itemBuilder: (context, index) =>
-                ReservationBuilder(lotReserveCancel[index], context),
-            separatorBuilder: (context, index) => dividerItem(),
-            itemCount: lotReserveCancel.length,
-            physics: const BouncingScrollPhysics(),
-          ),
-          fallback: (context) =>
-              const Center(child: CircularProgressIndicator()),
-        );
+        return (lotReserveCancel.isNotEmpty)
+            ? ListView.separated(
+                itemBuilder: (context, index) =>
+                    ReservationBuilder(lotReserveCancel[index], context),
+                separatorBuilder: (context, index) => dividerItem(),
+                itemCount: lotReserveCancel.length,
+                physics: const BouncingScrollPhysics(),
+              )
+            : const Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'No Canceled Reservations',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                            color: Colors.grey),
+                      )
+                    ],
+                  ),
+                ),
+              );
       },
     );
   }

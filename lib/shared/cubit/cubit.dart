@@ -69,21 +69,33 @@ class AppCubit extends Cubit<AppStates> {
   List<Map<String, dynamic>> reservationsLot = [];
   ReservationsModel? reservationsModel;
 
-  void getReservations() {
+  Future<int> getId() async {
+    final _response = await DioHelper.getData(
+      url: lotReservations,
+      token: CacheHelper.getData(key: 'secret'),
+    );
+
+    final reservations_id = _response.data['id'] as int;
+    return reservations_id;
+  }
+
+  Future<void> getReservations() async {
     emit(AppLoadingBookingDataState());
 
-    DioHelper.getData(
-      url: lotReservations,
-      query: {
-        'page': '1',
-        'per_page': '10',
-      },
-      token: CacheHelper.getData(key: 'secret'),
-    ).then((value) {
-      if (value != []) {
-        value.data.forEach((element) {
+    try {
+      final response = await DioHelper.getData(
+        url: lotReservations,
+        query: {
+          'page': '1',
+          'per_page': '10',
+        },
+        token: CacheHelper.getData(key: 'secret'),
+      );
+      await getId.toString();
+      if (response != null) {
+        response.data.forEach((element) {
           Map<String, dynamic> mergedMap = {};
-          for (var map in value.data) {
+          for (var map in response.data) {
             mergedMap.addAll(map);
           }
           reservationsLot.add(mergedMap);
@@ -91,16 +103,11 @@ class AppCubit extends Cubit<AppStates> {
         print(reservationsLot[0]['state']);
       }
 
-      //reservationsModel = ReservationsModel.fromJson(value.data);
-      //print(reservationsModel.toString());
-
-      //print(reservationsModel?.id.toString());
-
       emit(ReservationsSuccessState());
-    }).catchError((error) {
+    } catch (error) {
       print(error.toString());
       emit(ReservationsErrorState(error.toString()));
-    });
+    }
   }
 
   List<Map<String, dynamic>> reservationsPendingLot = [];

@@ -17,18 +17,30 @@ class ExpiredReservation extends StatelessWidget {
       builder: (BuildContext context, Object? state) {
         var lotReserveExpire = AppCubit.get(context).reservationsExpireLot;
 
-        return ConditionalBuilder(
-          condition: AppCubit.get(context).reservationsExpireModel != null,
-          builder: (context) => ListView.separated(
-            itemBuilder: (context, index) =>
-                ReservationBuilder(lotReserveExpire[index], context),
-            separatorBuilder: (context, index) => dividerItem(),
-            itemCount: lotReserveExpire.length,
-            physics: const BouncingScrollPhysics(),
-          ),
-          fallback: (context) =>
-              const Center(child: CircularProgressIndicator()),
-        );
+        return (lotReserveExpire.isNotEmpty)
+            ? ListView.separated(
+                itemBuilder: (context, index) =>
+                    ReservationBuilder(lotReserveExpire[index], context),
+                separatorBuilder: (context, index) => dividerItem(),
+                itemCount: lotReserveExpire.length,
+                physics: const BouncingScrollPhysics(),
+              )
+            : const Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'No Expired Reservations',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                            color: Colors.grey),
+                      )
+                    ],
+                  ),
+                ),
+              );
       },
     );
   }

@@ -17,18 +17,30 @@ class Pending extends StatelessWidget {
       builder: (BuildContext context, Object? state) {
         var lotReservePending = AppCubit.get(context).reservationsPendingLot;
 
-        return ConditionalBuilder(
-          condition: AppCubit.get(context).reservationsPendingModel != null,
-          builder: (context) => ListView.separated(
-            itemBuilder: (context, index) =>
-                ReservationBuilder(lotReservePending[index], context),
-            separatorBuilder: (context, index) => dividerItem(),
-            itemCount: lotReservePending.length,
-            physics: const BouncingScrollPhysics(),
-          ),
-          fallback: (context) =>
-              const Center(child: CircularProgressIndicator()),
-        );
+        return (lotReservePending.isNotEmpty)
+            ? ListView.separated(
+                itemBuilder: (context, index) =>
+                    ReservationBuilder(lotReservePending[index], context),
+                separatorBuilder: (context, index) => dividerItem(),
+                itemCount: lotReservePending.length,
+                physics: const BouncingScrollPhysics(),
+              )
+            : const Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'No Pending Reservations',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                            color: Colors.grey),
+                      )
+                    ],
+                  ),
+                ),
+              );
       },
     );
   }

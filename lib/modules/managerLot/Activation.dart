@@ -17,18 +17,30 @@ class Activation extends StatelessWidget {
       builder: (BuildContext context, Object? state) {
         var lotReserveActive = AppCubit.get(context).reservationsActiveLot;
 
-        return ConditionalBuilder(
-          condition: AppCubit.get(context).reservationsActiveModel != null,
-          builder: (context) => ListView.separated(
-            itemBuilder: (context, index) =>
-                ReservationBuilder(lotReserveActive[index], context),
-            separatorBuilder: (context, index) => dividerItem(),
-            itemCount: lotReserveActive.length,
-            physics: const BouncingScrollPhysics(),
-          ),
-          fallback: (context) =>
-              const Center(child: CircularProgressIndicator()),
-        );
+        return (lotReserveActive.isNotEmpty)
+            ? ListView.separated(
+                itemBuilder: (context, index) =>
+                    ReservationBuilder(lotReserveActive[index], context),
+                separatorBuilder: (context, index) => dividerItem(),
+                itemCount: lotReserveActive.length,
+                physics: const BouncingScrollPhysics(),
+              )
+            : const Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'No Activated Reservations',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                            color: Colors.grey),
+                      )
+                    ],
+                  ),
+                ),
+              );
       },
     );
   }

@@ -5,7 +5,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://ee80-45-242-15-102.ngrok-free.app/',
+        baseUrl: 'https://41ef-45-242-15-102.ngrok-free.app/',
         receiveDataWhenStatusError: true,
       ),
     );
@@ -16,7 +16,6 @@ class DioHelper {
     Map<String, dynamic>? query,
     String? token,
   }) async {
-
     dio?.options.headers['Authorization'] = token;
     return await dio!.get(
       url,
