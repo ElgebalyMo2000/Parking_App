@@ -17,51 +17,96 @@ class BookingScreen extends StatelessWidget {
         builder: (context, state) {
           var reserve = AppLoginCubit.get(context).reservations;
           print(reserve.length);
-          return (reserve.isNotEmpty)
-              ? ListView.separated(
+          return (reserve.isNotEmpty) ? ListView.separated(
                   itemBuilder: (context, index) =>
                       buildTicketItem(reserve[index], context),
-                  separatorBuilder: (context, index) => SizedBox(height: 20.0),
+                  separatorBuilder: (context, index) => SizedBox(height: 15.0),
                   itemCount: reserve.length,
-                )
-              : Scaffold();
+                ) : Scaffold(
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                //crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(' There are no tickets, yet',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                      )),
+                ],
+              ),
+            ),
+          );
         });
   }
 }
 
 Widget buildTicketItem(Map model, context) => Container(
-      height: 170.0,
+      height: 240.0,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.0),
           color: Colors.grey.withOpacity(.3)),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.cyan,
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              width: 300.0,
+              height: 30.0,
+              child: Text('              Ticket Information',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20.0,
+                    color: Colors.white
+                  )),
+            ),
             SizedBox(
               height: 20.0,
             ),
-            Text(' Parking Name: ${model['lot_name']}',
+            Text(' Parking Name',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20.0,
                   fontFamily: 'ZenDots',
                 )),
+            Text('${model['lot_name']}',
+                  style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 20.0,
+              )
+              ),
             SizedBox(height: 10.0),
-            Text('State: ${model['state']}',
+            Text('State',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20.0,
                   fontFamily: 'ZenDots',
                 )),
+             Text('${model['state']}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20.0,
+                  )
+              ),
             SizedBox(height: 10.0),
-            Text('Parking Duration: ${model['duration']}',
+            Text('Parking Duration',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20.0,
                   fontFamily: 'ZenDots',
-                )),
+                )
+            ),
+            Text('${model['duration']}',
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20.0,
+                )
+            ),
           ],
         ),
       ),

@@ -57,7 +57,7 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
       url: RESERVATIONS,
       token: CacheHelper.getData(key: 'token'),
     ).then((value) {
-      if(value != null) {
+      if(value != []) {
         value.data.forEach((element) {
           Map<String, dynamic> mergedMap = {};
           for (var map in value.data) {

@@ -31,7 +31,7 @@ class ParkingLayout extends StatelessWidget {
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.add_call,
+                    Icons.book_outlined,
                   ),
                   label: 'Booking'),
               BottomNavigationBarItem(

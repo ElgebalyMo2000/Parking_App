@@ -37,7 +37,7 @@ class AppCubit extends Cubit<AppStates> {
 
   List<String> titles = [
     'Select Parking Lot',
-    'Parking Ticket',
+    'Parking Tickets',
     'Profile',
   ];
 

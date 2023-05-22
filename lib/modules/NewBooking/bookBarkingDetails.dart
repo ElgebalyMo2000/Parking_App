@@ -66,6 +66,12 @@ class bookParking extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Text(' How long are you going to park?',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20.0,
+                      )),
+                  SizedBox(height: 20.0),
                   defaultTextFormField(
                       Type: TextInputType.number,
                       controller: durationController,

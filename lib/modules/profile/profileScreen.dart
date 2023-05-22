@@ -80,7 +80,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(height: 20,),
                       Text(
                         '$name',
-                        style: TextStyle(fontSize: 20, color: Colors.black),
+                        style: TextStyle(fontSize: 20, color: Colors.black,
+                        fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 20,),
                       // defaultTextFormField(
@@ -88,7 +89,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       //     label: 'ID',
                       //     backgroundColor: Colors.grey.withOpacity(.1),
                       //     Type: TextInputType.number),
-
+                      SizedBox(height: 10,),
+                      defaultTextFormField(
+                          controller: emailController,
+                          label: 'Email',
+                          backgroundColor: Colors.grey.withOpacity(.1),
+                          Type: TextInputType.emailAddress),
                       SizedBox(height: 10,),
                       defaultTextFormField(
                           controller:   vNumberController,
@@ -97,12 +103,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Type: TextInputType.name
 
                       ),
-                      SizedBox(height: 10,),
-                      defaultTextFormField(
-                          controller: emailController,
-                          label: 'Email',
-                          backgroundColor: Colors.grey.withOpacity(.1),
-                          Type: TextInputType.emailAddress),
                       SizedBox(height: 10,),
                       defaultTextFormField(
                           controller: phoneNumberController,
