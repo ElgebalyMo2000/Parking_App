@@ -75,7 +75,7 @@ class AppCubit extends Cubit<AppStates> {
       token: CacheHelper.getData(key: 'secret'),
     );
 
-    final reservations_id = response.data['id'] ;
+    final reservations_id = response.data['id'];
     return reservations_id.toString();
   }
 
@@ -91,7 +91,7 @@ class AppCubit extends Cubit<AppStates> {
         },
         token: CacheHelper.getData(key: 'secret'),
       );
-    //  await getId.toString();
+      //  await getId.toString();
       if (response != null) {
         response.data.forEach((element) {
           Map<String, dynamic> mergedMap = {};
@@ -104,6 +104,29 @@ class AppCubit extends Cubit<AppStates> {
       }
 
       emit(ReservationsSuccessState());
+    } catch (error) {
+      print(error.toString());
+      emit(ReservationsErrorState(error.toString()));
+    }
+  }
+
+  Future<void> GetCustomerData(reservations_id) async {
+    emit(AppLoadingBookingDataState());
+    try {
+      final response = await DioHelper.getData(
+        url: customerDetails,
+        token: CacheHelper.getData(key: 'secret'),
+      );
+      if (response != null) {
+        response.data.forEach((element) {
+          Map<String, dynamic> mergedMap = {};
+          for (var map in response.data) {
+            mergedMap.addAll(map);
+          }
+          reservationsLot.add(mergedMap);
+        });
+        print(reservationsLot[0]['state']);
+      }
     } catch (error) {
       print(error.toString());
       emit(ReservationsErrorState(error.toString()));
