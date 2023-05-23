@@ -69,6 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
             value) {
           navigateAndFinish(context, ManagerHomeLayout());
         });
+        AppLoginCubit.get(context).getReservations();
       }
 
       },

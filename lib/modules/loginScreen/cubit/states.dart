@@ -61,3 +61,30 @@ class AppManErrorState extends AppLoginStates
   final String error;
   AppManErrorState(this.error);
 }
+
+
+class ReservationsLoadingState extends AppLoginStates {}
+
+class ReservationsSuccessState extends AppLoginStates {}
+
+class ReservationsErrorState extends AppLoginStates {
+  final String error;
+  ReservationsErrorState(this.error);
+}
+
+class GetActiveLoadingState extends AppLoginStates {}
+
+class GetActiveSuccessState extends AppLoginStates {}
+
+class GetActiveErrorState extends AppLoginStates {
+  final String error;
+  GetActiveErrorState(this.error);
+}
+class GetCancelLoadingState extends AppLoginStates {}
+
+class GetCancelSuccessState extends AppLoginStates {}
+
+class GetCancelErrorState extends AppLoginStates {
+  final String error;
+  GetCancelErrorState(this.error);
+}

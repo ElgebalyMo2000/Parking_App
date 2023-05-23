@@ -1,3 +1,4 @@
+import 'package:dbproject/shared/components/components.dart';
 import 'package:dbproject/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +20,14 @@ class ManagerHomeLayout extends StatelessWidget {
             title: Text(
               cubit.ManagerTitles[cubit.currentIndex],
             ),
+            actions: [
+              IconButton(
+                  onPressed: (){
+                signout(context);
+                    },
+                  icon: Icon(Icons.exit_to_app)
+              ),
+            ],
           ),
           //backgroundColor: Colors.transparent,
           body: cubit.managerScreens[cubit.currentIndex],
@@ -31,29 +40,29 @@ class ManagerHomeLayout extends StatelessWidget {
                   Icons.list,
                   color: Color.fromARGB(255, 176, 176, 176),
                 ),
-                //label: 'Reservations'
+                label: 'Reservations'
               ),
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.check_circle,
                   color: Color.fromARGB(255, 176, 176, 176),
                 ),
-                // label: 'Activation',
+                label: 'Activation',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.pending,
                     color: Color.fromARGB(255, 176, 176, 176)),
-                // label: 'Pending',
+                 label: 'Pending',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.access_time,
                     color: Color.fromARGB(255, 176, 176, 176)),
-                //  label: 'Expired',
+                  label: 'Expired',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.free_cancellation,
                     color: Color.fromARGB(255, 176, 176, 176)),
-                // label: 'Cancel'
+                 label: 'Cancel'
               ),
             ],
             currentIndex: cubit.currentIndex,

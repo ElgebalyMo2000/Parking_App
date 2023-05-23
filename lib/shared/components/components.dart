@@ -239,6 +239,19 @@ void signOut(context) {
   });
 }
 
+void signout(context) {
+  CacheHelper.removeData(
+    key: 'secret',
+  ).then((value) {
+    if (value) {
+      navigateAndFinish(
+        context,
+        LoginScreen(),
+      );
+    }
+  });
+}
+
 bool isEmailValid(String email) {
   final pattern =
       r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$';

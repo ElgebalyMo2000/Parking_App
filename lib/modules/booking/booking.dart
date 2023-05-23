@@ -17,6 +17,7 @@ class BookingScreen extends StatelessWidget {
         builder: (context, state) {
           var reserve = AppLoginCubit.get(context).reservations;
           print(reserve.length);
+
           return (reserve.isNotEmpty) ? ListView.separated(
                   itemBuilder: (context, index) =>
                       buildTicketItem(reserve[index], context),

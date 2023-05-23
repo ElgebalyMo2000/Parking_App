@@ -6,16 +6,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared/components/components.dart';
 import '../../shared/cubit/cubit.dart';
 import '../../shared/cubit/states.dart';
+import '../loginScreen/cubit/cubit.dart';
+import '../loginScreen/cubit/states.dart';
 
 class Activation extends StatelessWidget {
   const Activation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppStates>(
+    return BlocConsumer<AppLoginCubit, AppLoginStates>(
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, Object? state) {
-        var lotReserveActive = AppCubit.get(context).reservationsActiveLot;
+        var lotReserveActive = AppLoginCubit.get(context).active;
 
         return (lotReserveActive.isNotEmpty)
             ? ListView.separated(

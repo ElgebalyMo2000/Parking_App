@@ -81,7 +81,7 @@ class ParkingLot extends StatelessWidget {
                           onPressed: ()
                           {
                             navigateTo(context, DescriptionScreen( title: 'Cairo Station Parking',
-                            id: 2,
+                            id: 1,
                             ));
                           },
                           child: Padding(
@@ -165,7 +165,7 @@ class ParkingLot extends StatelessWidget {
                           {
                             navigateTo(context, DescriptionScreen(
                                 title: 'Garage Omar Makram',
-                              id: 7,
+                              id: 12,
                             )
                             );
                           },
@@ -208,7 +208,7 @@ class ParkingLot extends StatelessWidget {
                           {
                             navigateTo(context, DescriptionScreen(
                                 title: 'Al Damar Garage',
-                                id: 8,
+                                id: 11,
                             ));
                           },
                           child: Padding(

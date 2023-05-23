@@ -1,33 +1,33 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:dbproject/modules/managerLot/customer.dart';
+
+import 'package:dbproject/modules/loginScreen/cubit/cubit.dart';
+
 import 'package:dbproject/shared/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../models/resevationsModel.dart';
+
 import '../../shared/components/components.dart';
-import '../../shared/cubit/states.dart';
+
+import '../loginScreen/cubit/states.dart';
 
 class ReservationScreen extends StatelessWidget {
   const ReservationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppStates>(
+    return BlocConsumer<AppLoginCubit, AppLoginStates>(
         listener: (BuildContext context, state) {},
-        builder: (BuildContext context, Object? state) {
-          var lotReserve = AppCubit.get(context).reservationsLot;
-          print(lotReserve.length);
-
+        builder: (BuildContext context, state) {
+          var lotReserve = AppLoginCubit.get(context).reservationsLot;
+          print(lotReserve);
           return (lotReserve.isNotEmpty)
               ? ListView.separated(
                   itemBuilder: (context, index) =>
                       ReservationBuilder(lotReserve[index], context),
-                  separatorBuilder: (context, index) => dividerItem(),
+                  separatorBuilder: (context, index) => SizedBox(height: 15.0),
                   itemCount: lotReserve.length,
-                  physics: const BouncingScrollPhysics(),
                 )
-              : const Scaffold(
+              :  Scaffold(
                   body: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -56,8 +56,8 @@ Widget ReservationBuilder(Map reservationsModel, context) => Padding(
         ),
         child: MaterialButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CustomerDetails()));
+            //Navigator.push(context,
+                //MaterialPageRoute(builder: (context) => CustomerDetails()));
           },
           child: Column(
             children: [
@@ -71,11 +71,19 @@ Widget ReservationBuilder(Map reservationsModel, context) => Padding(
               ),
               Row(
                 children: [
-                  Text('State : ${reservationsModel['state']}'),
+                  Text('State : ${reservationsModel['state']}',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                    ),
+                  ),
                   const SizedBox(
                     width: 20.0,
                   ),
-                  Text('Duration : ${reservationsModel['duration']}'),
+                  Text('Duration : ${reservationsModel['duration']}',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                    ),
+                  ),
                 ],
               )
             ],

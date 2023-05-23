@@ -10,6 +10,7 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
 
   static AppLoginCubit get(context) => BlocProvider.of(context);
   String? token;
+  List<Map<String, dynamic>> reservationsLot = [];
 
   Future<void> userLogin({
     required String email,
@@ -58,11 +59,9 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
       token: CacheHelper.getData(key: 'token'),
     ).then((value) {
       if (value != []) {
-        value.data.forEach((element) {
+        value.data.forEach((map) {
           Map<String, dynamic> mergedMap = {};
-          for (var map in value.data) {
             mergedMap.addAll(map);
-          }
           reservations.add(mergedMap);
         });
         print(reservations[0]['state']);
@@ -117,6 +116,76 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
       emit(AppManSuccessState(token));
     }).catchError((error) {
       emit(AppManErrorState(error.toString()));
+    });
+  }
+  List<Map<String, dynamic>> pending = [];
+  List<Map<String, dynamic>> active = [];
+  List<Map<String, dynamic>> cancel = [];
+  List<Map<String, dynamic>> expired = [];
+
+  Future<void> getReservations() async {
+    emit(ReservationsLoadingState());
+
+    DioHelper.getData(
+      url: lotReservations,
+      token: CacheHelper.getData(key: 'secret'),
+    ).then((value) {
+      print((value.data[0]['id']));
+      if (value != []) {
+        value.data.forEach((map) {
+          Map<String, dynamic> mergedMap = {};
+
+          mergedMap.addAll(map);
+          print(mergedMap);
+          reservationsLot.add(mergedMap);
+        });
+        print(reservationsLot[0]['customer_name']);
+      }
+      reservationsLot.forEach((map)  {
+        if(map['state'] == 'pending'){
+          pending.add(map);
+        }else if(map['state'] == 'active'){
+          active.add(map);
+        }else if(map['state'] == 'cancel') {
+          cancel.add(map);
+        }else {
+          expired.add(map);
+        }
+      });
+      print(pending);
+      print(active);
+
+      emit(ReservationsSuccessState());
+    }).catchError((error) {
+      emit(ReservationsErrorState(error.toString()));
+    });
+  }
+  Future<void> userActivate({
+    required int id,
+  }) async {
+    emit(GetActiveLoadingState());
+    DioHelper.postData(
+      url: '/reservations/parking-lot/$id/activate',
+      token: CacheHelper.getData(key: 'secret'),
+    ).then((value) {
+      print(id);
+      emit(GetActiveSuccessState());
+    }).catchError((error) {
+      emit(GetActiveErrorState(error.toString()));
+    });
+  }
+  Future<void> userCancel({
+    required int id,
+  }) async {
+    emit(GetCancelLoadingState());
+    DioHelper.postData(
+      url: '/reservations/parking-lot/$id/cancel',
+      token: CacheHelper.getData(key: 'secret'),
+    ).then((value) {
+      print(id);
+      emit(GetCancelSuccessState());
+    }).catchError((error) {
+      emit(GetCancelErrorState(error.toString()));
     });
   }
 }

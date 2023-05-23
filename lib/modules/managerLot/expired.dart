@@ -6,16 +6,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared/components/components.dart';
 import '../../shared/cubit/cubit.dart';
 import '../../shared/cubit/states.dart';
+import '../loginScreen/cubit/cubit.dart';
+import '../loginScreen/cubit/states.dart';
 
 class ExpiredReservation extends StatelessWidget {
   const ExpiredReservation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppStates>(
+    return BlocConsumer<AppLoginCubit, AppLoginStates>(
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, Object? state) {
-        var lotReserveExpire = AppCubit.get(context).reservationsExpireLot;
+        var lotReserveExpire = AppLoginCubit.get(context).expired;
 
         return (lotReserveExpire.isNotEmpty)
             ? ListView.separated(

@@ -6,24 +6,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared/components/components.dart';
 import '../../shared/cubit/cubit.dart';
 import '../../shared/cubit/states.dart';
+import '../loginScreen/cubit/cubit.dart';
+import '../loginScreen/cubit/states.dart';
 
 class Pending extends StatelessWidget {
   const Pending({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppStates>(
+    return BlocConsumer<AppLoginCubit, AppLoginStates>(
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, Object? state) {
-        var lotReservePending = AppCubit.get(context).reservationsPendingLot;
+        var lotReservePending = AppLoginCubit.get(context).pending;
 
         return (lotReservePending.isNotEmpty)
             ? ListView.separated(
                 itemBuilder: (context, index) =>
                     ReservationBuilder(lotReservePending[index], context),
-                separatorBuilder: (context, index) => dividerItem(),
+                separatorBuilder: (context, index) => SizedBox(height: 20.0,),
                 itemCount: lotReservePending.length,
-                physics: const BouncingScrollPhysics(),
               )
             :  Scaffold(
                 body: Center(
@@ -55,8 +56,8 @@ Widget ReservationBuilder(Map reservationsPendingModel, context) => Padding(
         ),
         child: MaterialButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CustomerDetails()));
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => CustomerDetails()));
           },
           child: Column(
             children: [
@@ -64,10 +65,38 @@ Widget ReservationBuilder(Map reservationsPendingModel, context) => Padding(
                 '${reservationsPendingModel['customer_name']}',
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
-                height: 50.0,
+              SizedBox(height: 20.0,),
+              Row(
+                children:
+                [
+                  defaultButton(function: ()
+                  {
+                    AppLoginCubit.get(context).userActivate(id:reservationsPendingModel['id'] );
+                  },
+                    text: 'activate',
+                    width: 120.0,
+                    background: Colors.black,
+                    textColor: Colors.white,
+                  ),
+                  SizedBox(width: 60.0,),
+                  defaultButton(function: (){
+                    AppLoginCubit.get(context).userCancel(id:reservationsPendingModel['id'] );
+                  },
+                    text: 'Cancel',
+                    width: 120.0,
+                    background: Colors.black,
+                    textColor: Colors.white,
+                  ),
+              ]
               ),
-              Text('Duration : ${reservationsPendingModel['duration']}')
+              SizedBox(
+                height: 30.0,
+              ),
+              Text('Duration : ${reservationsPendingModel['duration']}',
+                style: TextStyle(
+                    fontSize: 15.0,
+                ),
+              )
             ],
           ),
         ),

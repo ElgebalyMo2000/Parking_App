@@ -1,21 +1,23 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:dbproject/modules/managerLot/customer.dart';
 import 'package:dbproject/shared/components/components.dart';
-import 'package:dbproject/shared/cubit/states.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/cubit/cubit.dart';
+import '../loginScreen/cubit/cubit.dart';
+import '../loginScreen/cubit/states.dart';
 
 class Cancellation extends StatelessWidget {
   const Cancellation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppStates>(
+    return BlocConsumer<AppLoginCubit, AppLoginStates>(
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, Object? state) {
-        var lotReserveCancel = AppCubit.get(context).reservationsCancelLot;
+        var lotReserveCancel = AppLoginCubit.get(context).cancel;
 
         return (lotReserveCancel.isNotEmpty)
             ? ListView.separated(
@@ -24,8 +26,8 @@ class Cancellation extends StatelessWidget {
                 separatorBuilder: (context, index) => dividerItem(),
                 itemCount: lotReserveCancel.length,
                 physics: const BouncingScrollPhysics(),
-              )
-            :  Scaffold(
+              ) :
+        Scaffold(
                 body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
