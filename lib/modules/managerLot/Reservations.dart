@@ -27,7 +27,7 @@ class ReservationScreen extends StatelessWidget {
                   itemCount: lotReserve.length,
                   physics: const BouncingScrollPhysics(),
                 )
-              :  Scaffold(
+              : const Scaffold(
                   body: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

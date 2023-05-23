@@ -10,6 +10,7 @@ import 'package:dbproject/shared/cubit/states.dart';
 import 'package:dbproject/shared/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../models/login_model.dart';
 import '../../models/resevationsModel.dart';
 import '../../modules/managerLot/Activation.dart';
 import '../../modules/managerLot/Cancellation.dart';
@@ -110,6 +111,9 @@ class AppCubit extends Cubit<AppStates> {
     }
   }
 
+  List<Map<String, dynamic>> details = [];
+  BookingDataModel? bookingModel;
+
   Future<void> GetCustomerData(reservations_id) async {
     emit(AppLoadingBookingDataState());
     try {
@@ -123,9 +127,9 @@ class AppCubit extends Cubit<AppStates> {
           for (var map in response.data) {
             mergedMap.addAll(map);
           }
-          reservationsLot.add(mergedMap);
+          details.add(mergedMap);
         });
-        print(reservationsLot[0]['state']);
+        print(details[0]['state']);
       }
     } catch (error) {
       print(error.toString());

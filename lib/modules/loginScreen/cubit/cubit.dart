@@ -14,7 +14,7 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
   Future<void> userLogin({
     required String email,
     required String password,
-  } ) async{
+  }) async {
     emit(AppLoginLoadingState());
     DioHelper.postData(
       url: LOGIN,
@@ -29,35 +29,35 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
       emit(AppLoginErrorState(error.toString()));
     });
   }
+
   UserData? userDataModel;
 
-  void getUserDate(){
+  void getUserDate() {
     emit(AppGetUserLoadingState());
     CacheHelper.getData(key: 'token');
     DioHelper.getData(
       url: me,
       token: CacheHelper.getData(key: 'token'),
     ).then((value) {
-
       userDataModel = UserData.fromJson(value.data);
       print(userDataModel?.email);
       emit(AppGetUserSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(AppGetUserErrorState(error));
     });
   }
 
-  List<Map<String,dynamic>> reservations = [];
+  List<Map<String, dynamic>> reservations = [];
   BookingDataModel? bookingModel;
 
-  void getBookingData(){
+  void getBookingData() {
     emit(AppLoadingBookingDataState());
 
     DioHelper.getData(
       url: RESERVATIONS,
       token: CacheHelper.getData(key: 'token'),
     ).then((value) {
-      if(value != []) {
+      if (value != []) {
         value.data.forEach((element) {
           Map<String, dynamic> mergedMap = {};
           for (var map in value.data) {
@@ -74,8 +74,7 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
       // // bookingModel = BookingDataModel.fromJson(mergedMap);
       // //print(bookingModel?.state);
       emit(AppSuccessBookingDataState());
-    }).catchError((error){
-
+    }).catchError((error) {
       emit(AppErrorBookingDataState());
     });
   }
@@ -83,29 +82,29 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
   void postUserRserve({
     required int duration,
     required int id,
-  })
-  {
+  }) {
     emit(AppLoadingReservationsState());
-    var t =   CacheHelper.getData(key: 'token');
+    var t = CacheHelper.getData(key: 'token');
     print(t);
     DioHelper.postData(
       url: reserve,
       token: CacheHelper.getData(key: 'token'),
       data: {
-        'duration' : duration,
-        'lot_id' : id,
+        'duration': duration,
+        'lot_id': id,
       },
     ).then((value) {
       emit(AppSuccessReservationsState());
-    }).catchError((error){
+    }).catchError((error) {
       print(error);
       emit(AppErrorReservationsState(error.toString()));
     });
   }
+
   Future<void> managerLogin({
     required String name,
     required String secret,
-  } ) async{
+  }) async {
     emit(AppManLoadingState());
     DioHelper.postData(
       url: MANAGER,
@@ -120,5 +119,4 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
       emit(AppManErrorState(error.toString()));
     });
   }
-
 }
